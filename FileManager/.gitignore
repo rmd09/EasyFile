@@ -1,3 +1,5 @@
 .vs
 Core/bin
 Core/obj
+CoreForWindows/bin
+CoreForWindows/obj

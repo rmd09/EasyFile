@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Xml.Linq;
+using System.IO;
 
-namespace MainCore
+namespace Core
 {
     internal static class InfoSorter
     {
@@ -36,7 +36,6 @@ namespace MainCore
 
                         while (j < name.Length)
                         {
-                            j++;
                             if (name[j] == mask[i + 1])
                             {
                                 if (i == mask.Length - 2)
@@ -54,12 +53,22 @@ namespace MainCore
                                         return false;
                                     }
                                 }
-
-                                break;
+                                j++;
+                                i += 2;
+                                goto EndOfCase;
                             }
+                            j++;
                         }
-                        j++;
-                        i += 2;
+                        if (i == mask.Length - 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                        
+                        EndOfCase:
                         break;
                     case '?':
                         if (j == name.Length - 1)
