@@ -1,4 +1,4 @@
-﻿namespace MainCore
+﻿namespace Core
 {
     public enum TypeСomparing
     {

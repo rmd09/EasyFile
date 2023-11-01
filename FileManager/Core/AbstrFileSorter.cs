@@ -1,4 +1,4 @@
-﻿namespace MainCore
+﻿namespace Core
 {
     public abstract class AbstrFileSorter
     {
