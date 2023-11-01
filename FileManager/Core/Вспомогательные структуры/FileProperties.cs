@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MainCore
+namespace Core
 {
     public struct FileProperties
     {

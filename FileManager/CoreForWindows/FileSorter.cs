@@ -1,7 +1,7 @@
-﻿using MainCore;
+﻿using Core;
 using System.IO;
 
-namespace FileCore
+namespace CoreForWindows
 {
     public class FileSorter : AbstrFileSorter
     {
