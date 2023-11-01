@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreForWindows", "CoreForWindows\CoreForWindows.csproj", "{F2D4411A-EFD1-4C36-AD37-9CA7439B45B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Interface.csproj", "{0C4E2296-AE18-4830-8761-F6D918B08400}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface", "Interface\Interface.csproj", "{0C4E2296-AE18-4830-8761-F6D918B08400}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{7B54CBFB-6014-42C5-84F3-1B5A7BC887A2}"
+	ProjectSection(SolutionItems) = preProject
+		Interface\icon.ico = Interface\icon.ico
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
