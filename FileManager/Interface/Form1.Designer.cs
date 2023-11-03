@@ -40,30 +40,30 @@
             treeView1 = new TreeView();
             splitContainer2 = new SplitContainer();
             lName = new Label();
+            bChangeName = new Button();
+            bDeleteShablon = new Button();
+            bSave = new Button();
             groupBox5 = new GroupBox();
-            dateTimePicker3 = new DateTimePicker();
+            datetChange2 = new DateTimePicker();
             label5 = new Label();
-            dateTimePicker4 = new DateTimePicker();
+            datetChange1 = new DateTimePicker();
             label6 = new Label();
-            checkBox3 = new CheckBox();
+            checkbDateChange = new CheckBox();
             groupBox4 = new GroupBox();
-            dateTimePicker2 = new DateTimePicker();
+            datetCreate2 = new DateTimePicker();
             label4 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            datetCreate1 = new DateTimePicker();
             label2 = new Label();
-            checkBox2 = new CheckBox();
+            checkbDateCreate = new CheckBox();
             groupBox2 = new GroupBox();
-            checkBox1 = new CheckBox();
-            comboBox1 = new ComboBox();
-            numericUpDown2 = new NumericUpDown();
+            checkbSize = new CheckBox();
+            comboSize = new ComboBox();
+            numSize2 = new NumericUpDown();
             label1 = new Label();
-            numericUpDown1 = new NumericUpDown();
+            numSize1 = new NumericUpDown();
             label3 = new Label();
             groupBox3 = new GroupBox();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            textbInputMask = new TextBox();
             tabControl.SuspendLayout();
             tabShablons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -78,8 +78,8 @@
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numSize2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numSize1).BeginInit();
             groupBox3.SuspendLayout();
             SuspendLayout();
             // 
@@ -165,13 +165,14 @@
             treeView1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             treeView1.Location = new Point(3, 30);
             treeView1.Name = "treeView1";
-            treeNode1.Name = "ShablonsStandart";
+            treeNode1.Name = "Шаьлоны по умолчанию";
             treeNode1.Text = "Шаблоны по умолчанию";
-            treeNode2.Name = "Узел0";
+            treeNode2.Name = "Пользовательские шаблоны";
             treeNode2.Text = "Пользовательские шаблоны";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2 });
             treeView1.Size = new Size(281, 586);
             treeView1.TabIndex = 1;
+            treeView1.AfterSelect += treeView1_AfterSelect;
             // 
             // splitContainer2
             // 
@@ -188,9 +189,9 @@
             // 
             // splitContainer2.Panel2
             // 
-            splitContainer2.Panel2.Controls.Add(button3);
-            splitContainer2.Panel2.Controls.Add(button2);
-            splitContainer2.Panel2.Controls.Add(button1);
+            splitContainer2.Panel2.Controls.Add(bChangeName);
+            splitContainer2.Panel2.Controls.Add(bDeleteShablon);
+            splitContainer2.Panel2.Controls.Add(bSave);
             splitContainer2.Panel2.Controls.Add(groupBox5);
             splitContainer2.Panel2.Controls.Add(groupBox4);
             splitContainer2.Panel2.Controls.Add(groupBox2);
@@ -210,13 +211,46 @@
             lName.Text = "Новый шаблон";
             lName.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // bChangeName
+            // 
+            bChangeName.BackColor = Color.WhiteSmoke;
+            bChangeName.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            bChangeName.Location = new Point(327, 522);
+            bChangeName.Name = "bChangeName";
+            bChangeName.Size = new Size(267, 49);
+            bChangeName.TabIndex = 24;
+            bChangeName.Text = "Изменить название";
+            bChangeName.UseVisualStyleBackColor = false;
+            // 
+            // bDeleteShablon
+            // 
+            bDeleteShablon.BackColor = Color.WhiteSmoke;
+            bDeleteShablon.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            bDeleteShablon.Location = new Point(650, 522);
+            bDeleteShablon.Name = "bDeleteShablon";
+            bDeleteShablon.Size = new Size(267, 49);
+            bDeleteShablon.TabIndex = 23;
+            bDeleteShablon.Text = "Удалить шаблон";
+            bDeleteShablon.UseVisualStyleBackColor = false;
+            // 
+            // bSave
+            // 
+            bSave.BackColor = Color.WhiteSmoke;
+            bSave.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            bSave.Location = new Point(9, 522);
+            bSave.Name = "bSave";
+            bSave.Size = new Size(267, 49);
+            bSave.TabIndex = 22;
+            bSave.Text = "Сохранить";
+            bSave.UseVisualStyleBackColor = false;
+            // 
             // groupBox5
             // 
-            groupBox5.Controls.Add(dateTimePicker3);
+            groupBox5.Controls.Add(datetChange2);
             groupBox5.Controls.Add(label5);
-            groupBox5.Controls.Add(dateTimePicker4);
+            groupBox5.Controls.Add(datetChange1);
             groupBox5.Controls.Add(label6);
-            groupBox5.Controls.Add(checkBox3);
+            groupBox5.Controls.Add(checkbDateChange);
             groupBox5.Dock = DockStyle.Top;
             groupBox5.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox5.Location = new Point(0, 358);
@@ -226,13 +260,13 @@
             groupBox5.TabStop = false;
             groupBox5.Text = "Дата редактирования";
             // 
-            // dateTimePicker3
+            // datetChange2
             // 
-            dateTimePicker3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker3.Location = new Point(371, 56);
-            dateTimePicker3.Name = "dateTimePicker3";
-            dateTimePicker3.Size = new Size(250, 38);
-            dateTimePicker3.TabIndex = 26;
+            datetChange2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            datetChange2.Location = new Point(371, 56);
+            datetChange2.Name = "datetChange2";
+            datetChange2.Size = new Size(250, 38);
+            datetChange2.TabIndex = 26;
             // 
             // label5
             // 
@@ -244,13 +278,13 @@
             label5.TabIndex = 25;
             label5.Text = "по";
             // 
-            // dateTimePicker4
+            // datetChange1
             // 
-            dateTimePicker4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker4.Location = new Point(59, 56);
-            dateTimePicker4.Name = "dateTimePicker4";
-            dateTimePicker4.Size = new Size(250, 38);
-            dateTimePicker4.TabIndex = 24;
+            datetChange1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            datetChange1.Location = new Point(59, 56);
+            datetChange1.Name = "datetChange1";
+            datetChange1.Size = new Size(250, 38);
+            datetChange1.TabIndex = 24;
             // 
             // label6
             // 
@@ -262,24 +296,24 @@
             label6.TabIndex = 23;
             label6.Text = "с";
             // 
-            // checkBox3
+            // checkbDateChange
             // 
-            checkBox3.AutoSize = true;
-            checkBox3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBox3.Location = new Point(758, 57);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(159, 35);
-            checkBox3.TabIndex = 22;
-            checkBox3.Text = "Любая дата";
-            checkBox3.UseVisualStyleBackColor = true;
+            checkbDateChange.AutoSize = true;
+            checkbDateChange.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            checkbDateChange.Location = new Point(758, 57);
+            checkbDateChange.Name = "checkbDateChange";
+            checkbDateChange.Size = new Size(159, 35);
+            checkbDateChange.TabIndex = 22;
+            checkbDateChange.Text = "Любая дата";
+            checkbDateChange.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(dateTimePicker2);
+            groupBox4.Controls.Add(datetCreate2);
             groupBox4.Controls.Add(label4);
-            groupBox4.Controls.Add(dateTimePicker1);
+            groupBox4.Controls.Add(datetCreate1);
             groupBox4.Controls.Add(label2);
-            groupBox4.Controls.Add(checkBox2);
+            groupBox4.Controls.Add(checkbDateCreate);
             groupBox4.Dock = DockStyle.Top;
             groupBox4.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox4.Location = new Point(0, 227);
@@ -289,13 +323,13 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Дата создания";
             // 
-            // dateTimePicker2
+            // datetCreate2
             // 
-            dateTimePicker2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker2.Location = new Point(371, 56);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 38);
-            dateTimePicker2.TabIndex = 26;
+            datetCreate2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            datetCreate2.Location = new Point(371, 56);
+            datetCreate2.Name = "datetCreate2";
+            datetCreate2.Size = new Size(250, 38);
+            datetCreate2.TabIndex = 26;
             // 
             // label4
             // 
@@ -307,13 +341,13 @@
             label4.TabIndex = 25;
             label4.Text = "по";
             // 
-            // dateTimePicker1
+            // datetCreate1
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Location = new Point(59, 56);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 38);
-            dateTimePicker1.TabIndex = 24;
+            datetCreate1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            datetCreate1.Location = new Point(59, 56);
+            datetCreate1.Name = "datetCreate1";
+            datetCreate1.Size = new Size(250, 38);
+            datetCreate1.TabIndex = 24;
             // 
             // label2
             // 
@@ -325,24 +359,24 @@
             label2.TabIndex = 23;
             label2.Text = "с";
             // 
-            // checkBox2
+            // checkbDateCreate
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBox2.Location = new Point(758, 57);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(159, 35);
-            checkBox2.TabIndex = 22;
-            checkBox2.Text = "Любая дата";
-            checkBox2.UseVisualStyleBackColor = true;
+            checkbDateCreate.AutoSize = true;
+            checkbDateCreate.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            checkbDateCreate.Location = new Point(758, 57);
+            checkbDateCreate.Name = "checkbDateCreate";
+            checkbDateCreate.Size = new Size(159, 35);
+            checkbDateCreate.TabIndex = 22;
+            checkbDateCreate.Text = "Любая дата";
+            checkbDateCreate.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(checkBox1);
-            groupBox2.Controls.Add(comboBox1);
-            groupBox2.Controls.Add(numericUpDown2);
+            groupBox2.Controls.Add(checkbSize);
+            groupBox2.Controls.Add(comboSize);
+            groupBox2.Controls.Add(numSize2);
             groupBox2.Controls.Add(label1);
-            groupBox2.Controls.Add(numericUpDown1);
+            groupBox2.Controls.Add(numSize1);
             groupBox2.Controls.Add(label3);
             groupBox2.Dock = DockStyle.Top;
             groupBox2.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
@@ -353,34 +387,35 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Размер";
             // 
-            // checkBox1
+            // checkbSize
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBox1.Location = new Point(724, 58);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(193, 35);
-            checkBox1.TabIndex = 21;
-            checkBox1.Text = "Любой размер";
-            checkBox1.UseVisualStyleBackColor = true;
+            checkbSize.AutoSize = true;
+            checkbSize.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            checkbSize.Location = new Point(724, 58);
+            checkbSize.Name = "checkbSize";
+            checkbSize.Size = new Size(193, 35);
+            checkbSize.TabIndex = 21;
+            checkbSize.Text = "Любой размер";
+            checkbSize.UseVisualStyleBackColor = true;
+            checkbSize.CheckedChanged += checkbSize_CheckedChanged;
             // 
-            // comboBox1
+            // comboSize
             // 
-            comboBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Гб", "Мб", "Кб", "Байт" });
-            comboBox1.Location = new Point(391, 55);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 39);
-            comboBox1.TabIndex = 20;
+            comboSize.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            comboSize.FormattingEnabled = true;
+            comboSize.Items.AddRange(new object[] { "Гб", "Мб", "Кб", "Байт" });
+            comboSize.Location = new Point(391, 55);
+            comboSize.Name = "comboSize";
+            comboSize.Size = new Size(151, 39);
+            comboSize.TabIndex = 20;
             // 
-            // numericUpDown2
+            // numSize2
             // 
-            numericUpDown2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            numericUpDown2.Location = new Point(247, 56);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(118, 38);
-            numericUpDown2.TabIndex = 19;
+            numSize2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            numSize2.Location = new Point(247, 56);
+            numSize2.Name = "numSize2";
+            numSize2.Size = new Size(118, 38);
+            numSize2.TabIndex = 19;
             // 
             // label1
             // 
@@ -392,13 +427,13 @@
             label1.TabIndex = 18;
             label1.Text = "до";
             // 
-            // numericUpDown1
+            // numSize1
             // 
-            numericUpDown1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            numericUpDown1.Location = new Point(59, 56);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(118, 38);
-            numericUpDown1.TabIndex = 17;
+            numSize1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            numSize1.Location = new Point(59, 56);
+            numSize1.Name = "numSize1";
+            numSize1.Size = new Size(118, 38);
+            numSize1.TabIndex = 17;
             // 
             // label3
             // 
@@ -412,7 +447,7 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(textBox1);
+            groupBox3.Controls.Add(textbInputMask);
             groupBox3.Dock = DockStyle.Top;
             groupBox3.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox3.Location = new Point(0, 0);
@@ -422,50 +457,17 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Маска";
             // 
-            // textBox1
+            // textbInputMask
             // 
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Dock = DockStyle.Bottom;
-            textBox1.ForeColor = SystemColors.ScrollBar;
-            textBox1.Location = new Point(3, 51);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(923, 48);
-            textBox1.TabIndex = 0;
-            textBox1.Text = "Введите маску";
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.WhiteSmoke;
-            button1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(9, 522);
-            button1.Name = "button1";
-            button1.Size = new Size(267, 49);
-            button1.TabIndex = 22;
-            button1.Text = "Сохранить";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.WhiteSmoke;
-            button2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(650, 522);
-            button2.Name = "button2";
-            button2.Size = new Size(267, 49);
-            button2.TabIndex = 23;
-            button2.Text = "Удалить шаблон";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.WhiteSmoke;
-            button3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(327, 522);
-            button3.Name = "button3";
-            button3.Size = new Size(267, 49);
-            button3.TabIndex = 24;
-            button3.Text = "Изменить название";
-            button3.UseVisualStyleBackColor = false;
+            textbInputMask.BorderStyle = BorderStyle.None;
+            textbInputMask.Dock = DockStyle.Bottom;
+            textbInputMask.ForeColor = SystemColors.ScrollBar;
+            textbInputMask.Location = new Point(3, 51);
+            textbInputMask.Multiline = true;
+            textbInputMask.Name = "textbInputMask";
+            textbInputMask.Size = new Size(923, 48);
+            textbInputMask.TabIndex = 0;
+            textbInputMask.Text = "Введите маску";
             // 
             // Form1
             // 
@@ -494,8 +496,8 @@
             groupBox4.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numSize2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numSize1).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             ResumeLayout(false);
@@ -513,28 +515,28 @@
         private SplitContainer splitContainer2;
         private Label lName;
         private GroupBox groupBox3;
-        private TextBox textBox1;
-        private NumericUpDown numericUpDown1;
+        private TextBox textbInputMask;
+        private NumericUpDown numSize1;
         private Label label3;
         private GroupBox groupBox2;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown numSize2;
         private Label label1;
-        private ComboBox comboBox1;
-        private CheckBox checkBox1;
+        private ComboBox comboSize;
+        private CheckBox checkbSize;
         private GroupBox groupBox5;
-        private DateTimePicker dateTimePicker3;
+        private DateTimePicker datetChange2;
         private Label label5;
-        private DateTimePicker dateTimePicker4;
+        private DateTimePicker datetChange1;
         private Label label6;
-        private CheckBox checkBox3;
+        private CheckBox checkbDateChange;
         private GroupBox groupBox4;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker datetCreate2;
         private Label label4;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker datetCreate1;
         private Label label2;
-        private CheckBox checkBox2;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private CheckBox checkbDateCreate;
+        private Button bChangeName;
+        private Button bDeleteShablon;
+        private Button bSave;
     }
 }
