@@ -1,24 +1,16 @@
 ﻿namespace Core
 {
-    public enum TypeСomparing
-    {
-        Greater,
-        Less,
-        Equal,
-        CreaterOrEqual,
-        LessOrEqual
-    }
     /// <summary>
     /// Структура для сравнения размера файла (>,<,==,<=,>=)
     /// </summary>
     public struct SizeInterval
     {
-        public SizeInterval(long sizeBits, TypeСomparing typeСomparing)
+        public SizeInterval(long start, long end)
         {
-            SizeBites = sizeBits;
-            TypeСomparing = typeСomparing;
+            Start = start;
+            End = end;
         }
-        public long SizeBites { get; private set; }
-        public TypeСomparing TypeСomparing { get; private set; }
+        public long Start { get; private set; }
+        public long End { get; private set; }
     }
 }

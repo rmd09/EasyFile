@@ -98,9 +98,13 @@ namespace Interface
 
         private void FillShablon(Shablon shablon)
         {
+            Filter filter = shablon.Filter;
             lName.Text = shablon.Name;
-            textbInputMask.ForeColor = Color.Black;
-            textbInputMask.Text = shablon.Filter.Mask;
+            textbInputMask.Text = filter.Mask;
+            if (filter.HasSizeBitsInterval)
+            {
+
+            }
         }
 
         private void checkbSize_CheckedChanged(object sender, EventArgs e)

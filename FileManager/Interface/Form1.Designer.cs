@@ -59,11 +59,11 @@
             checkbSize = new CheckBox();
             comboSize = new ComboBox();
             numSize2 = new NumericUpDown();
+            groupBox3 = new GroupBox();
+            textbInputMask = new TextBox();
             label1 = new Label();
             numSize1 = new NumericUpDown();
             label3 = new Label();
-            groupBox3 = new GroupBox();
-            textbInputMask = new TextBox();
             tabControl.SuspendLayout();
             tabShablons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -79,8 +79,8 @@
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numSize2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numSize1).BeginInit();
             groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numSize1).BeginInit();
             SuspendLayout();
             // 
             // tabControl
@@ -417,6 +417,29 @@
             numSize2.Size = new Size(118, 38);
             numSize2.TabIndex = 19;
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(textbInputMask);
+            groupBox3.Dock = DockStyle.Top;
+            groupBox3.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox3.Location = new Point(0, 0);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(929, 102);
+            groupBox3.TabIndex = 18;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Маска";
+            // 
+            // textbInputMask
+            // 
+            textbInputMask.BorderStyle = BorderStyle.None;
+            textbInputMask.Dock = DockStyle.Bottom;
+            textbInputMask.ForeColor = SystemColors.ControlText;
+            textbInputMask.Location = new Point(3, 51);
+            textbInputMask.Multiline = true;
+            textbInputMask.Name = "textbInputMask";
+            textbInputMask.Size = new Size(923, 48);
+            textbInputMask.TabIndex = 0;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -444,30 +467,6 @@
             label3.Size = new Size(36, 31);
             label3.TabIndex = 16;
             label3.Text = "от";
-            // 
-            // groupBox3
-            // 
-            groupBox3.Controls.Add(textbInputMask);
-            groupBox3.Dock = DockStyle.Top;
-            groupBox3.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox3.Location = new Point(0, 0);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(929, 102);
-            groupBox3.TabIndex = 18;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Маска";
-            // 
-            // textbInputMask
-            // 
-            textbInputMask.BorderStyle = BorderStyle.None;
-            textbInputMask.Dock = DockStyle.Bottom;
-            textbInputMask.ForeColor = SystemColors.ScrollBar;
-            textbInputMask.Location = new Point(3, 51);
-            textbInputMask.Multiline = true;
-            textbInputMask.Name = "textbInputMask";
-            textbInputMask.Size = new Size(923, 48);
-            textbInputMask.TabIndex = 0;
-            textbInputMask.Text = "Введите маску";
             // 
             // Form1
             // 
@@ -497,9 +496,9 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numSize2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numSize1).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numSize1).EndInit();
             ResumeLayout(false);
         }
 
@@ -516,11 +515,8 @@
         private Label lName;
         private GroupBox groupBox3;
         private TextBox textbInputMask;
-        private NumericUpDown numSize1;
-        private Label label3;
         private GroupBox groupBox2;
         private NumericUpDown numSize2;
-        private Label label1;
         private ComboBox comboSize;
         private CheckBox checkbSize;
         private GroupBox groupBox5;
@@ -538,5 +534,8 @@
         private Button bChangeName;
         private Button bDeleteShablon;
         private Button bSave;
+        private Label label1;
+        private NumericUpDown numSize1;
+        private Label label3;
     }
 }

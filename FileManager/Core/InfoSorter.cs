@@ -139,25 +139,13 @@ namespace Core
 
         public static bool SortBySize(this long sizeBits, SizeInterval sizeInterval)
         {
-            switch (sizeInterval.TypeСomparing)
+            if (sizeBits >= sizeInterval.Start && sizeBits <= sizeInterval.End)
             {
-                case TypeСomparing.Greater:
-                    return sizeBits > sizeInterval.SizeBites;
-
-                case TypeСomparing.Less:
-                    return sizeBits < sizeInterval.SizeBites;
-
-                case TypeСomparing.Equal:
-                    return sizeBits == sizeInterval.SizeBites;
-
-                case TypeСomparing.CreaterOrEqual:
-                    return sizeBits >= sizeInterval.SizeBites;
-
-                case TypeСomparing.LessOrEqual:
-                    return sizeBits <= sizeInterval.SizeBites;
-
-                default:
-                    throw new ArgumentNullException("sizeInterval", "аргумент sizeInterval равен null");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
