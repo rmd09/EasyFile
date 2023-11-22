@@ -24,7 +24,7 @@ namespace Interface
             CheckShablons();
             FillTreeView();
 
-            //List<Shablon> shablons = new List<Shablon>(3)
+            //List<Shablon> Shablons = new List<Shablon>(3)
             //{
             //    new Shablon("Текстовый документ", new Filter("*.txt", false, false, false)),
             //    new Shablon("Текстовый документ Word", new Filter("*.doc*", false, false, false)),
@@ -32,24 +32,22 @@ namespace Interface
             //};
             //JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
             //jsonSerializerOptions.WriteIndented = true;
-            //string json = JsonSerializer.Serialize(shablons, jsonSerializerOptions);
+            //string json = JsonSerializer.Serialize(new JsonStruct(Shablons), jsonSerializerOptions);
             //File.WriteAllText(pathStandartShablons, json);
         }
 
         #region Этап загрузки приложения
         /// <summary>
-        /// Проверяет наличие json-файлов с шаблонами и, если они есть, заполняет standartShablons и shablons, в противном случае выводит предупреждение
+        /// Проверяет наличие json-файлов с шаблонами и, если они есть, заполняет standartShablons и Shablons, в противном случае выводит предупреждение
         /// </summary>
         private void CheckShablons()
         {
-            JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
-            jsonSerializerOptions.WriteIndented = true;
             if (File.Exists(pathStandartShablons))
             {
                 string json = File.ReadAllText(pathStandartShablons);
                 try
                 {
-                    standartShablons = JsonSerializer.Deserialize<Shablon[]>(json, jsonSerializerOptions).ToList<Shablon>();
+                    standartShablons = JsonSerializer.Deserialize<JsonStruct>(json).Shablons;
                 }
                 catch
                 {
@@ -59,7 +57,7 @@ namespace Interface
             else
             {
                 MessageBox.Show("Файл со стандартными шаблонами был удалён! Дальнейшая работа с файлами будет без этих шаблонов", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                File.Create(pathStandartShablons);
+                File.Create(pathStandartShablons).Close();
             }
 
             if (File.Exists(pathShablons))
@@ -76,7 +74,7 @@ namespace Interface
             else
             {
                 MessageBox.Show("Файл с пользовательскими шаблонами был удалён! Дальнейшая работа с файлами будет без этих шаблонов", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                File.Create(pathShablons);
+                File.Create(pathShablons).Close();
             }
         }
 

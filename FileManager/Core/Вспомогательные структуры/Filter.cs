@@ -2,6 +2,7 @@
 
 namespace Core
 {
+    [Serializable]
     public struct Filter
     {
         public Filter(string mask, bool isDateTimeIntervalChange, bool isDateTimeIntervalCreate, bool isSizeBitsInterval, DateTimeInterval dateTimeIntervalChange = new DateTimeInterval(), DateTimeInterval dateTimeIntervalCreate = new DateTimeInterval(), SizeInterval sizeBitsInterval = new SizeInterval())
@@ -14,12 +15,12 @@ namespace Core
             DateTimeIntervalCreate = dateTimeIntervalCreate;
             SizeBitesInterval = sizeBitsInterval;
         }
-        public string Mask { get; private set; }
-        public DateTimeInterval DateTimeIntervalChange { get; private set; }
-        public bool HasDateTimeIntervalChange { get; private set; }
-        public DateTimeInterval DateTimeIntervalCreate { get; private set; }
-        public bool HasDateTimeIntervalCreate { get; private set; }
-        public SizeInterval SizeBitesInterval { get; private set; }
-        public bool HasSizeBitsInterval { get; private set; }
+        public string Mask { get; set; }
+        public DateTimeInterval DateTimeIntervalChange { get; set; }
+        public bool HasDateTimeIntervalChange { get; set; }
+        public DateTimeInterval DateTimeIntervalCreate { get; set; }
+        public bool HasDateTimeIntervalCreate { get; set; }
+        public SizeInterval SizeBitesInterval { get; set; }
+        public bool HasSizeBitsInterval { get; set; }
     }
 }
