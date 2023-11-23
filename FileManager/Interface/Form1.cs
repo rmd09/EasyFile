@@ -21,12 +21,13 @@ namespace Interface
         public Form1()
         {
             InitializeComponent();
+            SetMaxMinValues();
             CheckShablons();
             FillTreeView();
 
             //List<Shablon> Shablons = new List<Shablon>(3)
             //{
-            //    new Shablon("Текстовый документ", new Filter("*.txt", false, false, false)),
+            //    new Shablon("Текстовый документ", new Filter("*.txt", true, true, true, new DateTimeInterval(new DateTime(2023, 11, 1), DateTime.Now), new DateTimeInterval(new DateTime(2023, 11, 6), DateTime.Now), new SizeInterval(2000, 14000))),
             //    new Shablon("Текстовый документ Word", new Filter("*.doc*", false, false, false)),
             //    new Shablon("Документ PowerPoint", new Filter("*.ppt*", false, false, false))
             //};
@@ -101,10 +102,10 @@ namespace Interface
             Filter filter = shablon.Filter;
             lName.Text = shablon.Name;
             textbInputMask.Text = filter.Mask;
-            if (filter.HasSizeBitsInterval)
-            {
 
-            }
+            FillSize(filter);
+            FillDateCreate(filter);
+            FillDateChange(filter);
         }
 
         private void checkbSize_CheckedChanged(object sender, EventArgs e)
