@@ -59,11 +59,11 @@
             checkbSize = new CheckBox();
             comboSize = new ComboBox();
             numSize2 = new NumericUpDown();
-            groupBox3 = new GroupBox();
-            textbInputMask = new TextBox();
             label1 = new Label();
             numSize1 = new NumericUpDown();
             label3 = new Label();
+            groupBox3 = new GroupBox();
+            textbInputMask = new TextBox();
             tabControl.SuspendLayout();
             tabShablons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -79,8 +79,8 @@
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numSize2).BeginInit();
-            groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numSize1).BeginInit();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl
@@ -208,12 +208,13 @@
             lName.Name = "lName";
             lName.Size = new Size(929, 76);
             lName.TabIndex = 15;
-            lName.Text = "Новый шаблон";
+            lName.Text = "Имя шаблона";
             lName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // bChangeName
             // 
             bChangeName.BackColor = Color.WhiteSmoke;
+            bChangeName.Enabled = false;
             bChangeName.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             bChangeName.Location = new Point(327, 522);
             bChangeName.Name = "bChangeName";
@@ -225,6 +226,7 @@
             // bDeleteShablon
             // 
             bDeleteShablon.BackColor = Color.WhiteSmoke;
+            bDeleteShablon.Enabled = false;
             bDeleteShablon.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             bDeleteShablon.Location = new Point(650, 522);
             bDeleteShablon.Name = "bDeleteShablon";
@@ -236,6 +238,7 @@
             // bSave
             // 
             bSave.BackColor = Color.WhiteSmoke;
+            bSave.Enabled = false;
             bSave.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             bSave.Location = new Point(9, 522);
             bSave.Name = "bSave";
@@ -262,6 +265,7 @@
             // 
             // datetChange2
             // 
+            datetChange2.Enabled = false;
             datetChange2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             datetChange2.Location = new Point(371, 56);
             datetChange2.Name = "datetChange2";
@@ -280,6 +284,7 @@
             // 
             // datetChange1
             // 
+            datetChange1.Enabled = false;
             datetChange1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             datetChange1.Location = new Point(59, 56);
             datetChange1.Name = "datetChange1";
@@ -299,6 +304,7 @@
             // checkbDateChange
             // 
             checkbDateChange.AutoSize = true;
+            checkbDateChange.Enabled = false;
             checkbDateChange.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             checkbDateChange.Location = new Point(758, 57);
             checkbDateChange.Name = "checkbDateChange";
@@ -325,6 +331,7 @@
             // 
             // datetCreate2
             // 
+            datetCreate2.Enabled = false;
             datetCreate2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             datetCreate2.Location = new Point(371, 56);
             datetCreate2.Name = "datetCreate2";
@@ -343,6 +350,7 @@
             // 
             // datetCreate1
             // 
+            datetCreate1.Enabled = false;
             datetCreate1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             datetCreate1.Location = new Point(59, 56);
             datetCreate1.Name = "datetCreate1";
@@ -362,6 +370,7 @@
             // checkbDateCreate
             // 
             checkbDateCreate.AutoSize = true;
+            checkbDateCreate.Enabled = false;
             checkbDateCreate.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             checkbDateCreate.Location = new Point(758, 57);
             checkbDateCreate.Name = "checkbDateCreate";
@@ -390,6 +399,7 @@
             // checkbSize
             // 
             checkbSize.AutoSize = true;
+            checkbSize.Enabled = false;
             checkbSize.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             checkbSize.Location = new Point(724, 58);
             checkbSize.Name = "checkbSize";
@@ -401,9 +411,10 @@
             // 
             // comboSize
             // 
+            comboSize.Enabled = false;
             comboSize.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             comboSize.FormattingEnabled = true;
-            comboSize.Items.AddRange(new object[] { "Гб", "Мб", "Кб", "Байт" });
+            comboSize.Items.AddRange(new object[] { "Байт", "Гб", "Кб", "Мб" });
             comboSize.Location = new Point(391, 55);
             comboSize.Name = "comboSize";
             comboSize.Size = new Size(151, 39);
@@ -411,11 +422,41 @@
             // 
             // numSize2
             // 
+            numSize2.Enabled = false;
             numSize2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             numSize2.Location = new Point(247, 56);
             numSize2.Name = "numSize2";
             numSize2.Size = new Size(118, 38);
             numSize2.TabIndex = 19;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(192, 58);
+            label1.Name = "label1";
+            label1.Size = new Size(40, 31);
+            label1.TabIndex = 18;
+            label1.Text = "до";
+            // 
+            // numSize1
+            // 
+            numSize1.Enabled = false;
+            numSize1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            numSize1.Location = new Point(59, 56);
+            numSize1.Name = "numSize1";
+            numSize1.Size = new Size(118, 38);
+            numSize1.TabIndex = 17;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(9, 58);
+            label3.Name = "label3";
+            label3.Size = new Size(36, 31);
+            label3.TabIndex = 16;
+            label3.Text = "от";
             // 
             // groupBox3
             // 
@@ -433,40 +474,13 @@
             // 
             textbInputMask.BorderStyle = BorderStyle.None;
             textbInputMask.Dock = DockStyle.Bottom;
+            textbInputMask.Enabled = false;
             textbInputMask.ForeColor = SystemColors.ControlText;
             textbInputMask.Location = new Point(3, 51);
             textbInputMask.Multiline = true;
             textbInputMask.Name = "textbInputMask";
             textbInputMask.Size = new Size(923, 48);
             textbInputMask.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(192, 58);
-            label1.Name = "label1";
-            label1.Size = new Size(40, 31);
-            label1.TabIndex = 18;
-            label1.Text = "до";
-            // 
-            // numSize1
-            // 
-            numSize1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            numSize1.Location = new Point(59, 56);
-            numSize1.Name = "numSize1";
-            numSize1.Size = new Size(118, 38);
-            numSize1.TabIndex = 17;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(9, 58);
-            label3.Name = "label3";
-            label3.Size = new Size(36, 31);
-            label3.TabIndex = 16;
-            label3.Text = "от";
             // 
             // Form1
             // 
@@ -496,9 +510,9 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numSize2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numSize1).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numSize1).EndInit();
             ResumeLayout(false);
         }
 

@@ -32,15 +32,22 @@ namespace Interface
                 checkbSize.Checked = false;
                 numSize1.Enabled = true;
                 numSize2.Enabled = true;
+                comboSize.Enabled = true;
 
                 numSize1.Value = filter.SizeBitesInterval.Start;
                 numSize2.Value = filter.SizeBitesInterval.End;
+                comboSize.SelectedIndex = (int)filter.SizeBitesInterval.TypeSize;
             }
             else
             {
                 checkbSize.Checked = true;
                 numSize1.Enabled = false;
                 numSize2.Enabled = false;
+                comboSize.Enabled = false;
+
+                numSize1.Value = 0;
+                numSize2.Value = 0;
+                comboSize.SelectedIndex = -1;
             }
         }
 
@@ -60,6 +67,9 @@ namespace Interface
                 checkbDateCreate.Checked = true;
                 datetCreate1.Enabled = false;
                 datetCreate2.Enabled = false;
+
+                datetCreate1.Value = DateTime.Now;
+                datetCreate2.Value = DateTime.Now;
             }
         }
 
@@ -79,6 +89,9 @@ namespace Interface
                 checkbDateChange.Checked = true;
                 datetChange1.Enabled = false;
                 datetChange2.Enabled = false;
+
+                datetChange1.Value = DateTime.Now;
+                datetChange2.Value = DateTime.Now;
             }
         }
     }

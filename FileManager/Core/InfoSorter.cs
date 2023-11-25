@@ -139,7 +139,11 @@ namespace Core
 
         public static bool SortBySize(this long sizeBits, SizeInterval sizeInterval)
         {
-            if (sizeBits >= sizeInterval.Start && sizeBits <= sizeInterval.End)
+            var values = sizeInterval.GetBites();
+            long start = values.Item1;
+            long end = values.Item2;
+
+            if (sizeBits >= start && sizeBits <= end)
             {
                 return true;
             }

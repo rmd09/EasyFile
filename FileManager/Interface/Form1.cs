@@ -38,6 +38,12 @@ namespace Interface
         }
 
         #region Этап загрузки приложения
+        private void EnableElements()
+        {
+            textbInputMask.Enabled = true;
+            bChangeName.Enabled = true;
+            bDeleteShablon.Enabled = true;
+        }
         /// <summary>
         /// Проверяет наличие json-файлов с шаблонами и, если они есть, заполняет standartShablons и Shablons, в противном случае выводит предупреждение
         /// </summary>
@@ -99,6 +105,7 @@ namespace Interface
 
         private void FillShablon(Shablon shablon)
         {
+            EnableElements();
             Filter filter = shablon.Filter;
             lName.Text = shablon.Name;
             textbInputMask.Text = filter.Mask;
