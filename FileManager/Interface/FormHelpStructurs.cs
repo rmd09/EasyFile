@@ -21,6 +21,7 @@ namespace Interface
             datetCreate2.MaxDate = DateTime.MaxValue;
         }
 
+        #region Заполнение
         /// <summary>
         /// Заполнение полей, связанных с допустимым размером файла
         /// </summary>
@@ -30,9 +31,7 @@ namespace Interface
             if (filter.HasSizeBitsInterval)
             {
                 checkbSize.Checked = false;
-                numSize1.Enabled = true;
-                numSize2.Enabled = true;
-                comboSize.Enabled = true;
+                EnableSize();
 
                 numSize1.Value = filter.SizeBitesInterval.Start;
                 numSize2.Value = filter.SizeBitesInterval.End;
@@ -41,13 +40,7 @@ namespace Interface
             else
             {
                 checkbSize.Checked = true;
-                numSize1.Enabled = false;
-                numSize2.Enabled = false;
-                comboSize.Enabled = false;
-
-                numSize1.Value = 0;
-                numSize2.Value = 0;
-                comboSize.SelectedIndex = -1;
+                DisableSize();
             }
         }
 
@@ -56,8 +49,7 @@ namespace Interface
             if (filter.HasDateTimeIntervalCreate)
             {
                 checkbDateCreate.Checked = false;
-                datetCreate1.Enabled = true;
-                datetCreate2.Enabled = true;
+                EnableDateCreate();
 
                 datetCreate1.Value = filter.DateTimeIntervalChange.Start;
                 datetCreate2.Value = filter.DateTimeIntervalChange.End;
@@ -65,11 +57,7 @@ namespace Interface
             else
             {
                 checkbDateCreate.Checked = true;
-                datetCreate1.Enabled = false;
-                datetCreate2.Enabled = false;
-
-                datetCreate1.Value = DateTime.Now;
-                datetCreate2.Value = DateTime.Now;
+                DisableDateCreate();
             }
         }
 
@@ -78,8 +66,7 @@ namespace Interface
             if (filter.HasDateTimeIntervalChange)
             {
                 checkbDateChange.Checked = false;
-                datetChange1.Enabled = true;
-                datetChange2.Enabled = true;
+                EnableDateChange();
 
                 datetChange1.Value = filter.DateTimeIntervalChange.Start;
                 datetChange2.Value = filter.DateTimeIntervalChange.End;
@@ -87,12 +74,56 @@ namespace Interface
             else
             {
                 checkbDateChange.Checked = true;
-                datetChange1.Enabled = false;
-                datetChange2.Enabled = false;
-
-                datetChange1.Value = DateTime.Now;
-                datetChange2.Value = DateTime.Now;
+                DisableDateChange();
             }
         }
+        #endregion
+
+        #region Блокировка/разблокировка
+        private void EnableSize()
+        {
+            numSize1.Enabled = true;
+            numSize2.Enabled = true;
+            comboSize.Enabled = true;
+        }
+        private void DisableSize()
+        {
+            numSize1.Enabled = false;
+            numSize2.Enabled = false;
+            comboSize.Enabled = false;
+
+            numSize1.Value = 0;
+            numSize2.Value = 0;
+            comboSize.SelectedIndex = -1;
+        }
+
+        private void EnableDateCreate()
+        {
+            datetCreate1.Enabled = true;
+            datetCreate2.Enabled = true;
+        }
+        private void DisableDateCreate()
+        {
+            datetCreate1.Enabled = false;
+            datetCreate2.Enabled = false;
+
+            datetCreate1.Value = DateTime.Now;
+            datetCreate2.Value = DateTime.Now;
+        }
+
+        private void EnableDateChange()
+        {
+            datetChange1.Enabled = true;
+            datetChange2.Enabled = true;
+        }
+        private void DisableDateChange()
+        {
+            datetChange1.Enabled = false;
+            datetChange2.Enabled = false;
+
+            datetChange1.Value = DateTime.Now;
+            datetChange2.Value = DateTime.Now;
+        }
+        #endregion
     }
 }

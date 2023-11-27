@@ -18,6 +18,7 @@ namespace Interface
         private List<Shablon> shablons = new List<Shablon>();
         private IndexOfTreeView indexOfTreeView = new IndexOfTreeView(0, 0);
         private Dictionary<string, int> indexesOfNodes = new Dictionary<string, int>();
+        private bool isChanged = false;
         public Form1()
         {
             InitializeComponent();
@@ -38,11 +39,17 @@ namespace Interface
         }
 
         #region Этап загрузки приложения
+        /// <summary>
+        /// Разблокировка элементов после первого перехода в какой-нибудь шаблон
+        /// </summary>
         private void EnableElements()
         {
             textbInputMask.Enabled = true;
             bChangeName.Enabled = true;
             bDeleteShablon.Enabled = true;
+            checkbDateChange.Enabled = true;
+            checkbDateCreate.Enabled = true;
+            checkbSize.Enabled = true;
         }
         /// <summary>
         /// Проверяет наличие json-файлов с шаблонами и, если они есть, заполняет standartShablons и Shablons, в противном случае выводит предупреждение
@@ -115,14 +122,6 @@ namespace Interface
             FillDateChange(filter);
         }
 
-        private void checkbSize_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkbSize.Checked)
-            {
-
-            }
-        }
-
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             string[] korenAndMean = e.Node.FullPath.Split('\\');
@@ -144,6 +143,92 @@ namespace Interface
                 default:
                     throw new Exception();
             }
+
+            DischangeEvent();
         }
+
+        /// <summary>
+        /// Обрабатывает изменения, внесённые пользователем
+        /// </summary>
+        private void ChangeEvent()
+        {
+            isChanged = true;
+            bSave.Enabled = true;
+        }
+        /// <summary>
+        /// Блокирует кнопку сохранения
+        /// </summary>
+        private void DischangeEvent()
+        {
+            isChanged = false;
+            bSave.Enabled = false;
+        }
+        #region Изменение данных
+        private void checkbSize_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void numSize1_ValueChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+
+
+            //switch (indexOfTreeView.Index1)
+            //{
+            //    case 0:
+            //        standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval.Start = numSize1.Value;
+            //        break;
+
+            //    default:
+            //        break;
+            //}
+        }
+
+        private void numSize2_ValueChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void comboSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void datetCreate1_ValueChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void datetCreate2_ValueChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void datetChange1_ValueChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void datetChange2_ValueChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void checkbDateCreate_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void checkbDateChange_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeEvent();
+        }
+
+        private void bSave_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

@@ -246,6 +246,7 @@
             bSave.TabIndex = 22;
             bSave.Text = "Сохранить";
             bSave.UseVisualStyleBackColor = false;
+            bSave.Click += bSave_Click;
             // 
             // groupBox5
             // 
@@ -271,6 +272,7 @@
             datetChange2.Name = "datetChange2";
             datetChange2.Size = new Size(250, 38);
             datetChange2.TabIndex = 26;
+            datetChange2.ValueChanged += datetChange2_ValueChanged;
             // 
             // label5
             // 
@@ -290,6 +292,7 @@
             datetChange1.Name = "datetChange1";
             datetChange1.Size = new Size(250, 38);
             datetChange1.TabIndex = 24;
+            datetChange1.ValueChanged += datetChange1_ValueChanged;
             // 
             // label6
             // 
@@ -312,6 +315,7 @@
             checkbDateChange.TabIndex = 22;
             checkbDateChange.Text = "Любая дата";
             checkbDateChange.UseVisualStyleBackColor = true;
+            checkbDateChange.CheckedChanged += checkbDateChange_CheckedChanged;
             // 
             // groupBox4
             // 
@@ -337,6 +341,7 @@
             datetCreate2.Name = "datetCreate2";
             datetCreate2.Size = new Size(250, 38);
             datetCreate2.TabIndex = 26;
+            datetCreate2.ValueChanged += datetCreate2_ValueChanged;
             // 
             // label4
             // 
@@ -356,6 +361,7 @@
             datetCreate1.Name = "datetCreate1";
             datetCreate1.Size = new Size(250, 38);
             datetCreate1.TabIndex = 24;
+            datetCreate1.ValueChanged += datetCreate1_ValueChanged;
             // 
             // label2
             // 
@@ -378,6 +384,7 @@
             checkbDateCreate.TabIndex = 22;
             checkbDateCreate.Text = "Любая дата";
             checkbDateCreate.UseVisualStyleBackColor = true;
+            checkbDateCreate.CheckedChanged += checkbDateCreate_CheckedChanged;
             // 
             // groupBox2
             // 
@@ -419,6 +426,7 @@
             comboSize.Name = "comboSize";
             comboSize.Size = new Size(151, 39);
             comboSize.TabIndex = 20;
+            comboSize.SelectedIndexChanged += comboSize_SelectedIndexChanged;
             // 
             // numSize2
             // 
@@ -428,6 +436,7 @@
             numSize2.Name = "numSize2";
             numSize2.Size = new Size(118, 38);
             numSize2.TabIndex = 19;
+            numSize2.ValueChanged += numSize2_ValueChanged;
             // 
             // label1
             // 
@@ -447,6 +456,7 @@
             numSize1.Name = "numSize1";
             numSize1.Size = new Size(118, 38);
             numSize1.TabIndex = 17;
+            numSize1.ValueChanged += numSize1_ValueChanged;
             // 
             // label3
             // 
