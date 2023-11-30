@@ -1,6 +1,6 @@
 ﻿namespace Interface
 {
-    internal class JsonStruct
+    public class JsonStruct
     {
         public JsonStruct(List<Shablon> shablons)
         {

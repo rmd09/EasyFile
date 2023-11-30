@@ -21,6 +21,23 @@ namespace Interface
             datetCreate2.MaxDate = DateTime.MaxValue;
         }
 
+        private TypeSize GetTypeSize(string name)
+        {
+            switch (name)
+            {
+                case "Байт":
+                    return TypeSize.b;
+                case "Кб":
+                    return TypeSize.Kb;
+                case "Мб":
+                    return TypeSize.Mb;
+                case "Гб":
+                    return TypeSize.Gb;
+                default:
+                    return new TypeSize();
+            }
+        }
+
         #region Заполнение
         /// <summary>
         /// Заполнение полей, связанных с допустимым размером файла
@@ -85,6 +102,7 @@ namespace Interface
             numSize1.Enabled = true;
             numSize2.Enabled = true;
             comboSize.Enabled = true;
+            comboSize.TabIndex = 0;
         }
         private void DisableSize()
         {

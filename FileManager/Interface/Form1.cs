@@ -79,7 +79,7 @@ namespace Interface
                 string json = File.ReadAllText(pathShablons);
                 try
                 {
-                    shablons = JsonSerializer.Deserialize<List<Shablon>>(json);
+                    shablons = JsonSerializer.Deserialize<JsonStruct>(json).Shablons;
                 }
                 catch
                 {
@@ -167,32 +167,106 @@ namespace Interface
         private void checkbSize_CheckedChanged(object sender, EventArgs e)
         {
             ChangeEvent();
+            if (checkbSize.Checked)
+            {
+                DisableSize();
+            }
+            else
+            {
+                EnableSize();
+            }
+
+            switch (indexOfTreeView.Index1)
+            {
+                case 0:
+                    Filter filter = standartShablons[indexOfTreeView.Index2].Filter;
+                    filter.HasSizeBitsInterval = !checkbSize.Checked;
+                    standartShablons[indexOfTreeView.Index2].Filter = filter;
+                    break;
+                case 1:
+                    Filter filter1 = shablons[indexOfTreeView.Index2].Filter;
+                    filter1.HasSizeBitsInterval = !checkbSize.Checked;
+                    shablons[indexOfTreeView.Index2].Filter = filter1;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void numSize1_ValueChanged(object sender, EventArgs e)
         {
             ChangeEvent();
 
+            switch (indexOfTreeView.Index1)
+            {
+                case 0:
+                    SizeInterval interval = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
+                    interval.Start = (long)numSize1.Value;
+                    Filter filter = standartShablons[indexOfTreeView.Index2].Filter;
+                    filter.SizeBitesInterval = interval;
+                    standartShablons[indexOfTreeView.Index2].Filter = filter;
+                    break;
+                case 1:
+                    SizeInterval interval1 = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
+                    interval1.Start = (long)numSize1.Value;
+                    Filter filter1 = standartShablons[indexOfTreeView.Index2].Filter;
+                    filter1.SizeBitesInterval = interval1;
+                    standartShablons[indexOfTreeView.Index2].Filter = filter1;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
-            //switch (indexOfTreeView.Index1)
-            //{
-            //    case 0:
-            //        standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval.Start = numSize1.Value;
-            //        break;
-
-            //    default:
-            //        break;
-            //}
         }
 
         private void numSize2_ValueChanged(object sender, EventArgs e)
         {
             ChangeEvent();
+
+            switch (indexOfTreeView.Index1)
+            {
+                case 0:
+                    SizeInterval interval = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
+                    interval.End = (long)numSize2.Value;
+                    Filter filter = standartShablons[indexOfTreeView.Index2].Filter;
+                    filter.SizeBitesInterval = interval;
+                    standartShablons[indexOfTreeView.Index2].Filter = filter;
+                    break;
+                case 1:
+                    SizeInterval interval1 = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
+                    interval1.End = (long)numSize2.Value;
+                    Filter filter1 = standartShablons[indexOfTreeView.Index2].Filter;
+                    filter1.SizeBitesInterval = interval1;
+                    standartShablons[indexOfTreeView.Index2].Filter = filter1;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void comboSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             ChangeEvent();
+
+            switch (indexOfTreeView.Index1)
+            {
+                case 0:
+                    SizeInterval interval = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
+                    interval.TypeSize = GetTypeSize(comboSize.Text);
+                    Filter filter = standartShablons[indexOfTreeView.Index2].Filter;
+                    filter.SizeBitesInterval = interval;
+                    standartShablons[indexOfTreeView.Index2].Filter = filter;
+                    break;
+                case 1:
+                    SizeInterval interval1 = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
+                    interval1.TypeSize = GetTypeSize(comboSize.Text);
+                    Filter filter1 = standartShablons[indexOfTreeView.Index2].Filter;
+                    filter1.SizeBitesInterval = interval1;
+                    standartShablons[indexOfTreeView.Index2].Filter = filter1;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void datetCreate1_ValueChanged(object sender, EventArgs e)
