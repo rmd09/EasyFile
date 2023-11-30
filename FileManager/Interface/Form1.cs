@@ -17,11 +17,11 @@ namespace Interface
         private List<Shablon> standartShablons = new List<Shablon>();
         private List<Shablon> shablons = new List<Shablon>();
         private IndexOfTreeView indexOfTreeView = new IndexOfTreeView(0, 0);
-        private Dictionary<string, int> indexesOfNodes = new Dictionary<string, int>();
         private bool isChanged = false;
         public Form1()
         {
             InitializeComponent();
+
             SetMaxMinValues();
             CheckShablons();
             FillTreeView();
@@ -98,14 +98,12 @@ namespace Interface
             for (int i = 0; i < standartShablons.Count; i++)
             {
                 treeView1.Nodes[INDEX_OF_STANDART_SHABLONS].Nodes.Add(standartShablons[i].Name);
-                indexesOfNodes.Add(standartShablons[i].Name, i);
             }
 
             treeView1.Nodes[INDEX_OF_SHABLONS].Nodes.Clear();
             for (int i = 0; i < shablons.Count; i++)
             {
                 treeView1.Nodes[INDEX_OF_SHABLONS].Nodes.Add(shablons[i].Name);
-                indexesOfNodes.Add(shablons[i].Name, i);
             }
         }
         #endregion
@@ -128,7 +126,7 @@ namespace Interface
             if (korenAndMean.Length == 1)
                 return;
 
-            indexOfTreeView.Index2 = indexesOfNodes[korenAndMean[1]];
+            indexOfTreeView.Index2 = e.Node.Index;
 
             switch (korenAndMean[0])
             {
