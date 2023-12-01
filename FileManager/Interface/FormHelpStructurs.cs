@@ -68,8 +68,8 @@ namespace Interface
                 checkbDateCreate.Checked = false;
                 EnableDateCreate();
 
-                datetCreate1.Value = filter.DateTimeIntervalChange.Start;
-                datetCreate2.Value = filter.DateTimeIntervalChange.End;
+                datetCreate1.Value = filter.DateTimeIntervalCreate.Start;
+                datetCreate2.Value = filter.DateTimeIntervalCreate.End;
             }
             else
             {

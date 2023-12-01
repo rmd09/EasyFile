@@ -31,11 +31,9 @@
             TreeNode treeNode1 = new TreeNode("Шаблоны по умолчанию");
             TreeNode treeNode2 = new TreeNode("Пользовательские шаблоны");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            tabControl = new TabControl();
-            tabSorters = new TabPage();
-            tabShablons = new TabPage();
             splitContainer1 = new SplitContainer();
             groupBox1 = new GroupBox();
+            bStartSort = new Button();
             bNewShablon = new Button();
             treeView1 = new TreeView();
             splitContainer2 = new SplitContainer();
@@ -64,8 +62,6 @@
             label3 = new Label();
             groupBox3 = new GroupBox();
             textbInputMask = new TextBox();
-            tabControl.SuspendLayout();
-            tabShablons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -83,44 +79,12 @@
             groupBox3.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControl
-            // 
-            tabControl.Controls.Add(tabSorters);
-            tabControl.Controls.Add(tabShablons);
-            tabControl.Dock = DockStyle.Fill;
-            tabControl.Location = new Point(0, 0);
-            tabControl.Name = "tabControl";
-            tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(1242, 725);
-            tabControl.TabIndex = 0;
-            // 
-            // tabSorters
-            // 
-            tabSorters.Location = new Point(4, 29);
-            tabSorters.Name = "tabSorters";
-            tabSorters.Padding = new Padding(3);
-            tabSorters.Size = new Size(1234, 692);
-            tabSorters.TabIndex = 0;
-            tabSorters.Text = "Сортировки";
-            tabSorters.UseVisualStyleBackColor = true;
-            // 
-            // tabShablons
-            // 
-            tabShablons.Controls.Add(splitContainer1);
-            tabShablons.Location = new Point(4, 29);
-            tabShablons.Name = "tabShablons";
-            tabShablons.Padding = new Padding(3);
-            tabShablons.Size = new Size(1234, 692);
-            tabShablons.TabIndex = 1;
-            tabShablons.Text = "Шаблоны";
-            tabShablons.UseVisualStyleBackColor = true;
-            // 
             // splitContainer1
             // 
             splitContainer1.BorderStyle = BorderStyle.Fixed3D;
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.IsSplitterFixed = true;
-            splitContainer1.Location = new Point(3, 3);
+            splitContainer1.Location = new Point(0, 0);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -131,28 +95,40 @@
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer2);
             splitContainer1.Panel2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            splitContainer1.Size = new Size(1228, 686);
-            splitContainer1.SplitterDistance = 291;
-            splitContainer1.TabIndex = 0;
+            splitContainer1.Size = new Size(1242, 725);
+            splitContainer1.SplitterDistance = 294;
+            splitContainer1.TabIndex = 1;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(bStartSort);
             groupBox1.Controls.Add(bNewShablon);
             groupBox1.Controls.Add(treeView1);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(287, 682);
+            groupBox1.Size = new Size(290, 721);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Список шаблонов";
             // 
+            // bStartSort
+            // 
+            bStartSort.BackColor = Color.White;
+            bStartSort.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            bStartSort.Location = new Point(3, 657);
+            bStartSort.Name = "bStartSort";
+            bStartSort.Size = new Size(275, 54);
+            bStartSort.TabIndex = 3;
+            bStartSort.Text = "Начать сортировку";
+            bStartSort.UseVisualStyleBackColor = false;
+            // 
             // bNewShablon
             // 
-            bNewShablon.BackColor = Color.White;
+            bNewShablon.BackColor = Color.WhiteSmoke;
             bNewShablon.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            bNewShablon.Location = new Point(6, 622);
+            bNewShablon.Location = new Point(3, 597);
             bNewShablon.Name = "bNewShablon";
             bNewShablon.Size = new Size(275, 54);
             bNewShablon.TabIndex = 2;
@@ -170,7 +146,7 @@
             treeNode2.Name = "Пользовательские шаблоны";
             treeNode2.Text = "Пользовательские шаблоны";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2 });
-            treeView1.Size = new Size(281, 586);
+            treeView1.Size = new Size(281, 561);
             treeView1.TabIndex = 1;
             treeView1.AfterSelect += treeView1_AfterSelect;
             // 
@@ -196,8 +172,8 @@
             splitContainer2.Panel2.Controls.Add(groupBox4);
             splitContainer2.Panel2.Controls.Add(groupBox2);
             splitContainer2.Panel2.Controls.Add(groupBox3);
-            splitContainer2.Size = new Size(933, 686);
-            splitContainer2.SplitterDistance = 80;
+            splitContainer2.Size = new Size(944, 725);
+            splitContainer2.SplitterDistance = 84;
             splitContainer2.TabIndex = 0;
             // 
             // lName
@@ -206,7 +182,7 @@
             lName.Font = new Font("Calibri", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             lName.Location = new Point(0, 0);
             lName.Name = "lName";
-            lName.Size = new Size(929, 76);
+            lName.Size = new Size(940, 80);
             lName.TabIndex = 15;
             lName.Text = "Имя шаблона";
             lName.TextAlign = ContentAlignment.MiddleCenter;
@@ -216,7 +192,7 @@
             bChangeName.BackColor = Color.WhiteSmoke;
             bChangeName.Enabled = false;
             bChangeName.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bChangeName.Location = new Point(327, 522);
+            bChangeName.Location = new Point(332, 574);
             bChangeName.Name = "bChangeName";
             bChangeName.Size = new Size(267, 49);
             bChangeName.TabIndex = 24;
@@ -228,7 +204,7 @@
             bDeleteShablon.BackColor = Color.WhiteSmoke;
             bDeleteShablon.Enabled = false;
             bDeleteShablon.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bDeleteShablon.Location = new Point(650, 522);
+            bDeleteShablon.Location = new Point(650, 574);
             bDeleteShablon.Name = "bDeleteShablon";
             bDeleteShablon.Size = new Size(267, 49);
             bDeleteShablon.TabIndex = 23;
@@ -240,7 +216,7 @@
             bSave.BackColor = Color.WhiteSmoke;
             bSave.Enabled = false;
             bSave.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bSave.Location = new Point(9, 522);
+            bSave.Location = new Point(20, 574);
             bSave.Name = "bSave";
             bSave.Size = new Size(267, 49);
             bSave.TabIndex = 22;
@@ -257,9 +233,9 @@
             groupBox5.Controls.Add(checkbDateChange);
             groupBox5.Dock = DockStyle.Top;
             groupBox5.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox5.Location = new Point(0, 358);
+            groupBox5.Location = new Point(0, 396);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(929, 131);
+            groupBox5.Size = new Size(940, 163);
             groupBox5.TabIndex = 21;
             groupBox5.TabStop = false;
             groupBox5.Text = "Дата редактирования";
@@ -326,9 +302,9 @@
             groupBox4.Controls.Add(checkbDateCreate);
             groupBox4.Dock = DockStyle.Top;
             groupBox4.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox4.Location = new Point(0, 227);
+            groupBox4.Location = new Point(0, 244);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(929, 131);
+            groupBox4.Size = new Size(940, 152);
             groupBox4.TabIndex = 20;
             groupBox4.TabStop = false;
             groupBox4.Text = "Дата создания";
@@ -396,9 +372,9 @@
             groupBox2.Controls.Add(label3);
             groupBox2.Dock = DockStyle.Top;
             groupBox2.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            groupBox2.Location = new Point(0, 102);
+            groupBox2.Location = new Point(0, 107);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(929, 125);
+            groupBox2.Size = new Size(940, 137);
             groupBox2.TabIndex = 19;
             groupBox2.TabStop = false;
             groupBox2.Text = "Размер";
@@ -421,7 +397,7 @@
             comboSize.Enabled = false;
             comboSize.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             comboSize.FormattingEnabled = true;
-            comboSize.Items.AddRange(new object[] { "Байт", "Гб", "Кб", "Мб" });
+            comboSize.Items.AddRange(new object[] { "Байт", "Кб", "Мб", "Гб" });
             comboSize.Location = new Point(391, 55);
             comboSize.Name = "comboSize";
             comboSize.Size = new Size(151, 39);
@@ -475,21 +451,22 @@
             groupBox3.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox3.Location = new Point(0, 0);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(929, 102);
+            groupBox3.Size = new Size(940, 107);
             groupBox3.TabIndex = 18;
             groupBox3.TabStop = false;
             groupBox3.Text = "Маска";
             // 
             // textbInputMask
             // 
+            textbInputMask.BackColor = SystemColors.Control;
             textbInputMask.BorderStyle = BorderStyle.None;
             textbInputMask.Dock = DockStyle.Bottom;
             textbInputMask.Enabled = false;
             textbInputMask.ForeColor = SystemColors.ControlText;
-            textbInputMask.Location = new Point(3, 51);
+            textbInputMask.Location = new Point(3, 56);
             textbInputMask.Multiline = true;
             textbInputMask.Name = "textbInputMask";
-            textbInputMask.Size = new Size(923, 48);
+            textbInputMask.Size = new Size(934, 48);
             textbInputMask.TabIndex = 0;
             // 
             // Form1
@@ -497,13 +474,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1242, 725);
-            Controls.Add(tabControl);
+            Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Form1";
-            tabControl.ResumeLayout(false);
-            tabShablons.ResumeLayout(false);
+            Text = "Менеджер файлов";
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -528,21 +503,15 @@
 
         #endregion
 
-        private TabControl tabControl;
-        private TabPage tabSorters;
-        private TabPage tabShablons;
         private SplitContainer splitContainer1;
         private GroupBox groupBox1;
-        private TreeView treeView1;
         private Button bNewShablon;
+        private TreeView treeView1;
         private SplitContainer splitContainer2;
         private Label lName;
-        private GroupBox groupBox3;
-        private TextBox textbInputMask;
-        private GroupBox groupBox2;
-        private NumericUpDown numSize2;
-        private ComboBox comboSize;
-        private CheckBox checkbSize;
+        private Button bChangeName;
+        private Button bDeleteShablon;
+        private Button bSave;
         private GroupBox groupBox5;
         private DateTimePicker datetChange2;
         private Label label5;
@@ -555,11 +524,15 @@
         private DateTimePicker datetCreate1;
         private Label label2;
         private CheckBox checkbDateCreate;
-        private Button bChangeName;
-        private Button bDeleteShablon;
-        private Button bSave;
+        private GroupBox groupBox2;
+        private CheckBox checkbSize;
+        private ComboBox comboSize;
+        private NumericUpDown numSize2;
         private Label label1;
         private NumericUpDown numSize1;
         private Label label3;
+        private GroupBox groupBox3;
+        private TextBox textbInputMask;
+        private Button bStartSort;
     }
 }

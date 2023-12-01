@@ -46,8 +46,8 @@ namespace Core
 }
 public enum TypeSize
 {
-    Gb,
-    Mb,
+    b,
     Kb,
-    b
+    Mb,
+    Gb
 }

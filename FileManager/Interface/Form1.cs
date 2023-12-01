@@ -14,6 +14,7 @@ namespace Interface
         private readonly string pathStandartShablons = $"{Environment.CurrentDirectory}\\Шаблоны\\Стандартные шаблоны.json";
         private readonly string pathShablons = $"{Environment.CurrentDirectory}\\Шаблоны\\Пользовательские шаблоны.json";
 
+        private Shablon tempShablon; //!!!!!!!!!!!!!!!!!
         private List<Shablon> standartShablons = new List<Shablon>();
         private List<Shablon> shablons = new List<Shablon>();
         private IndexOfTreeView indexOfTreeView = new IndexOfTreeView(0, 0);
@@ -150,22 +151,28 @@ namespace Interface
         /// </summary>
         private void ChangeEvent()
         {
-            isChanged = true;
-            bSave.Enabled = true;
+            if (!isChanged)
+            {
+                isChanged = true;
+                bSave.Enabled = true;
+                tempShablon = new Shablon(standartShablons[indexOfTreeView.Index2]);
+            }
         }
         /// <summary>
         /// Блокирует кнопку сохранения
         /// </summary>
         private void DischangeEvent()
         {
+            tempShablon = null;
             isChanged = false;
             bSave.Enabled = false;
         }
         #region Изменение данных
         private void checkbSize_CheckedChanged(object sender, EventArgs e)
         {
+            CheckBox chb = sender as CheckBox;
             ChangeEvent();
-            if (checkbSize.Checked)
+            if (chb.Checked)
             {
                 DisableSize();
             }
@@ -174,133 +181,148 @@ namespace Interface
                 EnableSize();
             }
 
-            switch (indexOfTreeView.Index1)
-            {
-                case 0:
-                    Filter filter = standartShablons[indexOfTreeView.Index2].Filter;
-                    filter.HasSizeBitsInterval = !checkbSize.Checked;
-                    standartShablons[indexOfTreeView.Index2].Filter = filter;
-                    break;
-                case 1:
-                    Filter filter1 = shablons[indexOfTreeView.Index2].Filter;
-                    filter1.HasSizeBitsInterval = !checkbSize.Checked;
-                    shablons[indexOfTreeView.Index2].Filter = filter1;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            Filter filter = tempShablon.Filter;
+            filter.HasSizeBitsInterval = !chb.Checked;
+            tempShablon.Filter = filter;
         }
 
         private void numSize1_ValueChanged(object sender, EventArgs e)
         {
+            NumericUpDown num = sender as NumericUpDown;
             ChangeEvent();
 
-            switch (indexOfTreeView.Index1)
-            {
-                case 0:
-                    SizeInterval interval = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
-                    interval.Start = (long)numSize1.Value;
-                    Filter filter = standartShablons[indexOfTreeView.Index2].Filter;
-                    filter.SizeBitesInterval = interval;
-                    standartShablons[indexOfTreeView.Index2].Filter = filter;
-                    break;
-                case 1:
-                    SizeInterval interval1 = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
-                    interval1.Start = (long)numSize1.Value;
-                    Filter filter1 = standartShablons[indexOfTreeView.Index2].Filter;
-                    filter1.SizeBitesInterval = interval1;
-                    standartShablons[indexOfTreeView.Index2].Filter = filter1;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            SizeInterval interval = tempShablon.Filter.SizeBitesInterval;
+            interval.Start = (long)num.Value;
+            Filter filter = tempShablon.Filter;
+            filter.SizeBitesInterval = interval;
+            tempShablon.Filter = filter;
 
         }
 
         private void numSize2_ValueChanged(object sender, EventArgs e)
         {
+            NumericUpDown num = sender as NumericUpDown;
             ChangeEvent();
 
-            switch (indexOfTreeView.Index1)
-            {
-                case 0:
-                    SizeInterval interval = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
-                    interval.End = (long)numSize2.Value;
-                    Filter filter = standartShablons[indexOfTreeView.Index2].Filter;
-                    filter.SizeBitesInterval = interval;
-                    standartShablons[indexOfTreeView.Index2].Filter = filter;
-                    break;
-                case 1:
-                    SizeInterval interval1 = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
-                    interval1.End = (long)numSize2.Value;
-                    Filter filter1 = standartShablons[indexOfTreeView.Index2].Filter;
-                    filter1.SizeBitesInterval = interval1;
-                    standartShablons[indexOfTreeView.Index2].Filter = filter1;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            SizeInterval interval = tempShablon.Filter.SizeBitesInterval;
+            interval.End = (long)num.Value;
+            Filter filter = tempShablon.Filter;
+            filter.SizeBitesInterval = interval;
+            tempShablon.Filter = filter;
         }
 
         private void comboSize_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ComboBox comboBox = sender as ComboBox;
             ChangeEvent();
 
-            switch (indexOfTreeView.Index1)
-            {
-                case 0:
-                    SizeInterval interval = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
-                    interval.TypeSize = GetTypeSize(comboSize.Text);
-                    Filter filter = standartShablons[indexOfTreeView.Index2].Filter;
-                    filter.SizeBitesInterval = interval;
-                    standartShablons[indexOfTreeView.Index2].Filter = filter;
-                    break;
-                case 1:
-                    SizeInterval interval1 = standartShablons[indexOfTreeView.Index2].Filter.SizeBitesInterval;
-                    interval1.TypeSize = GetTypeSize(comboSize.Text);
-                    Filter filter1 = standartShablons[indexOfTreeView.Index2].Filter;
-                    filter1.SizeBitesInterval = interval1;
-                    standartShablons[indexOfTreeView.Index2].Filter = filter1;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private void datetCreate1_ValueChanged(object sender, EventArgs e)
-        {
-            ChangeEvent();
-        }
-
-        private void datetCreate2_ValueChanged(object sender, EventArgs e)
-        {
-            ChangeEvent();
-        }
-
-        private void datetChange1_ValueChanged(object sender, EventArgs e)
-        {
-            ChangeEvent();
-        }
-
-        private void datetChange2_ValueChanged(object sender, EventArgs e)
-        {
-            ChangeEvent();
-        }
-
-        private void checkbDateCreate_CheckedChanged(object sender, EventArgs e)
-        {
-            ChangeEvent();
-        }
-
-        private void checkbDateChange_CheckedChanged(object sender, EventArgs e)
-        {
-            ChangeEvent();
+            SizeInterval interval = tempShablon.Filter.SizeBitesInterval;
+            interval.TypeSize = GetTypeSize(comboBox.Text);
+            Filter filter = tempShablon.Filter;
+            filter.SizeBitesInterval = interval;
+            tempShablon.Filter = filter;
         }
 
         private void bSave_Click(object sender, EventArgs e)
         {
-
+            switch (indexOfTreeView.Index1)
+            {
+                case 0:
+                    standartShablons[indexOfTreeView.Index2] = tempShablon;
+                    break;
+                case 1:
+                    shablons[indexOfTreeView.Index2] = tempShablon;
+                    break;
+                default:
+                    throw new Exception();
+            }
+            DischangeEvent();
         }
+
+        private void checkbDateCreate_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            ChangeEvent();
+            if (checkBox.Checked)
+            {
+                DisableDateCreate();
+            }
+            else
+            {
+                EnableDateCreate();
+            }
+
+            Filter filter = tempShablon.Filter;
+            filter.HasDateTimeIntervalCreate = !checkBox.Checked;
+            tempShablon.Filter = filter;
+        }
+
+        private void datetCreate1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dateTimePicker = sender as DateTimePicker;
+            ChangeEvent();
+
+            Filter filter = tempShablon.Filter;
+            DateTimeInterval dateTimeInterval = filter.DateTimeIntervalCreate;
+            dateTimeInterval.Start = dateTimePicker.Value;
+            filter.DateTimeIntervalCreate = dateTimeInterval;
+            tempShablon.Filter = filter;
+        }
+
+        private void datetCreate2_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dateTimePicker = sender as DateTimePicker;
+            ChangeEvent();
+
+            Filter filter = tempShablon.Filter;
+            DateTimeInterval dateTimeInterval = filter.DateTimeIntervalCreate;
+            dateTimeInterval.End = dateTimePicker.Value;
+            filter.DateTimeIntervalCreate = dateTimeInterval;
+            tempShablon.Filter = filter;
+        }
+
+        private void checkbDateChange_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            ChangeEvent();
+            if (checkBox.Checked)
+            {
+                DisableDateChange();
+            }
+            else
+            {
+                EnableDateChange();
+            }
+
+            Filter filter = tempShablon.Filter;
+            filter.HasDateTimeIntervalChange = !checkBox.Checked;
+            tempShablon.Filter = filter;
+        }
+
+        private void datetChange1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dateTimePicker = sender as DateTimePicker;
+            ChangeEvent();
+
+            Filter filter = tempShablon.Filter;
+            DateTimeInterval dateTimeInterval = filter.DateTimeIntervalChange;
+            dateTimeInterval.Start = dateTimePicker.Value;
+            filter.DateTimeIntervalChange = dateTimeInterval;
+            tempShablon.Filter = filter;
+        }
+
+        private void datetChange2_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dateTimePicker = sender as DateTimePicker;
+            ChangeEvent();
+
+            Filter filter = tempShablon.Filter;
+            DateTimeInterval dateTimeInterval = filter.DateTimeIntervalChange;
+            dateTimeInterval.End = dateTimePicker.Value;
+            filter.DateTimeIntervalChange = dateTimeInterval;
+            tempShablon.Filter = filter;
+        }
+
         #endregion
     }
 }
