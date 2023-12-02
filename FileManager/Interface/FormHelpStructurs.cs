@@ -102,7 +102,7 @@ namespace Interface
             numSize1.Enabled = true;
             numSize2.Enabled = true;
             comboSize.Enabled = true;
-            comboSize.TabIndex = 0;
+            comboSize.SelectedIndex = 1;
         }
         private void DisableSize()
         {

@@ -1,5 +1,6 @@
 using Core;
 using CoreForWindows;
+using System.ComponentModel;
 using System.Text.Json;
 
 namespace Interface
@@ -14,7 +15,7 @@ namespace Interface
         private readonly string pathStandartShablons = $"{Environment.CurrentDirectory}\\Шаблоны\\Стандартные шаблоны.json";
         private readonly string pathShablons = $"{Environment.CurrentDirectory}\\Шаблоны\\Пользовательские шаблоны.json";
 
-        private Shablon tempShablon; //!!!!!!!!!!!!!!!!!
+        private Shablon tempShablon;
         private List<Shablon> standartShablons = new List<Shablon>();
         private List<Shablon> shablons = new List<Shablon>();
         private IndexOfTreeView indexOfTreeView = new IndexOfTreeView(0, 0);
@@ -45,6 +46,7 @@ namespace Interface
         /// </summary>
         private void EnableElements()
         {
+            textName.Enabled = true;
             textbInputMask.Enabled = true;
             bChangeName.Enabled = true;
             bDeleteShablon.Enabled = true;
@@ -113,7 +115,7 @@ namespace Interface
         {
             EnableElements();
             Filter filter = shablon.Filter;
-            lName.Text = shablon.Name;
+            textName.Text = shablon.Name;
             textbInputMask.Text = filter.Mask;
 
             FillSize(filter);
@@ -127,6 +129,10 @@ namespace Interface
             if (korenAndMean.Length == 1)
                 return;
 
+            if (isChanged)
+            {
+                Warning();
+            }
             indexOfTreeView.Index2 = e.Node.Index;
 
             switch (korenAndMean[0])
@@ -143,13 +149,22 @@ namespace Interface
                     throw new Exception();
             }
 
-            DischangeEvent();
+            DisChangeProperties();
+        }
+
+        private void Warning()
+        {
+            DialogResult dialogResult = MessageBox.Show("Сохранить изменения?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                bSave_Click(bSave, null);
+            }
         }
 
         /// <summary>
         /// Обрабатывает изменения, внесённые пользователем
         /// </summary>
-        private void ChangeEvent()
+        private void ChangeProperties()
         {
             if (!isChanged)
             {
@@ -159,9 +174,9 @@ namespace Interface
             }
         }
         /// <summary>
-        /// Блокирует кнопку сохранения
+        /// Восстанавливает состояние формы
         /// </summary>
-        private void DischangeEvent()
+        private void DisChangeProperties()
         {
             tempShablon = null;
             isChanged = false;
@@ -171,7 +186,7 @@ namespace Interface
         private void checkbSize_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox chb = sender as CheckBox;
-            ChangeEvent();
+            ChangeProperties();
             if (chb.Checked)
             {
                 DisableSize();
@@ -189,7 +204,7 @@ namespace Interface
         private void numSize1_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown num = sender as NumericUpDown;
-            ChangeEvent();
+            ChangeProperties();
 
             SizeInterval interval = tempShablon.Filter.SizeBitesInterval;
             interval.Start = (long)num.Value;
@@ -202,7 +217,7 @@ namespace Interface
         private void numSize2_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown num = sender as NumericUpDown;
-            ChangeEvent();
+            ChangeProperties();
 
             SizeInterval interval = tempShablon.Filter.SizeBitesInterval;
             interval.End = (long)num.Value;
@@ -214,7 +229,7 @@ namespace Interface
         private void comboSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
-            ChangeEvent();
+            ChangeProperties();
 
             SizeInterval interval = tempShablon.Filter.SizeBitesInterval;
             interval.TypeSize = GetTypeSize(comboBox.Text);
@@ -223,26 +238,10 @@ namespace Interface
             tempShablon.Filter = filter;
         }
 
-        private void bSave_Click(object sender, EventArgs e)
-        {
-            switch (indexOfTreeView.Index1)
-            {
-                case 0:
-                    standartShablons[indexOfTreeView.Index2] = tempShablon;
-                    break;
-                case 1:
-                    shablons[indexOfTreeView.Index2] = tempShablon;
-                    break;
-                default:
-                    throw new Exception();
-            }
-            DischangeEvent();
-        }
-
         private void checkbDateCreate_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBox = sender as CheckBox;
-            ChangeEvent();
+            ChangeProperties();
             if (checkBox.Checked)
             {
                 DisableDateCreate();
@@ -260,7 +259,7 @@ namespace Interface
         private void datetCreate1_ValueChanged(object sender, EventArgs e)
         {
             DateTimePicker dateTimePicker = sender as DateTimePicker;
-            ChangeEvent();
+            ChangeProperties();
 
             Filter filter = tempShablon.Filter;
             DateTimeInterval dateTimeInterval = filter.DateTimeIntervalCreate;
@@ -272,7 +271,7 @@ namespace Interface
         private void datetCreate2_ValueChanged(object sender, EventArgs e)
         {
             DateTimePicker dateTimePicker = sender as DateTimePicker;
-            ChangeEvent();
+            ChangeProperties();
 
             Filter filter = tempShablon.Filter;
             DateTimeInterval dateTimeInterval = filter.DateTimeIntervalCreate;
@@ -284,7 +283,7 @@ namespace Interface
         private void checkbDateChange_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBox = sender as CheckBox;
-            ChangeEvent();
+            ChangeProperties();
             if (checkBox.Checked)
             {
                 DisableDateChange();
@@ -302,7 +301,7 @@ namespace Interface
         private void datetChange1_ValueChanged(object sender, EventArgs e)
         {
             DateTimePicker dateTimePicker = sender as DateTimePicker;
-            ChangeEvent();
+            ChangeProperties();
 
             Filter filter = tempShablon.Filter;
             DateTimeInterval dateTimeInterval = filter.DateTimeIntervalChange;
@@ -314,7 +313,7 @@ namespace Interface
         private void datetChange2_ValueChanged(object sender, EventArgs e)
         {
             DateTimePicker dateTimePicker = sender as DateTimePicker;
-            ChangeEvent();
+            ChangeProperties();
 
             Filter filter = tempShablon.Filter;
             DateTimeInterval dateTimeInterval = filter.DateTimeIntervalChange;
@@ -323,6 +322,41 @@ namespace Interface
             tempShablon.Filter = filter;
         }
 
+        private void textbInputMask_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            ChangeProperties();
+
+            Filter filter = tempShablon.Filter;
+            filter.Mask = textBox.Text;
+            tempShablon.Filter = filter;
+        }
+
+        private void textName_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            ChangeProperties();
+
+            tempShablon.Name = textBox.Text;
+        }
         #endregion
+
+        private void bSave_Click(object sender, EventArgs e)
+        {
+            treeView1.Nodes[indexOfTreeView.Index1].Nodes[indexOfTreeView.Index2].Text = tempShablon.Name;
+
+            switch (indexOfTreeView.Index1)
+            {
+                case 0:
+                    standartShablons[indexOfTreeView.Index2] = tempShablon;
+                    break;
+                case 1:
+                    shablons[indexOfTreeView.Index2] = tempShablon;
+                    break;
+                default:
+                    throw new Exception();
+            }
+            DisChangeProperties();
+        }
     }
 }

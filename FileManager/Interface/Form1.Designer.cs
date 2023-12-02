@@ -37,7 +37,7 @@
             bNewShablon = new Button();
             treeView1 = new TreeView();
             splitContainer2 = new SplitContainer();
-            lName = new Label();
+            textName = new TextBox();
             bChangeName = new Button();
             bDeleteShablon = new Button();
             bSave = new Button();
@@ -161,7 +161,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            splitContainer2.Panel1.Controls.Add(lName);
+            splitContainer2.Panel1.Controls.Add(textName);
             // 
             // splitContainer2.Panel2
             // 
@@ -176,16 +176,21 @@
             splitContainer2.SplitterDistance = 84;
             splitContainer2.TabIndex = 0;
             // 
-            // lName
+            // textName
             // 
-            lName.Dock = DockStyle.Fill;
-            lName.Font = new Font("Calibri", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
-            lName.Location = new Point(0, 0);
-            lName.Name = "lName";
-            lName.Size = new Size(940, 80);
-            lName.TabIndex = 15;
-            lName.Text = "Имя шаблона";
-            lName.TextAlign = ContentAlignment.MiddleCenter;
+            textName.BackColor = SystemColors.Menu;
+            textName.BorderStyle = BorderStyle.None;
+            textName.Dock = DockStyle.Bottom;
+            textName.Enabled = false;
+            textName.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            textName.Location = new Point(0, 17);
+            textName.Multiline = true;
+            textName.Name = "textName";
+            textName.Size = new Size(940, 63);
+            textName.TabIndex = 0;
+            textName.Text = "Имя шаблона";
+            textName.TextAlign = HorizontalAlignment.Center;
+            textName.TextChanged += textName_TextChanged;
             // 
             // bChangeName
             // 
@@ -468,6 +473,7 @@
             textbInputMask.Name = "textbInputMask";
             textbInputMask.Size = new Size(934, 48);
             textbInputMask.TabIndex = 0;
+            textbInputMask.TextChanged += textbInputMask_TextChanged;
             // 
             // Form1
             // 
@@ -485,6 +491,7 @@
             splitContainer1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel1.PerformLayout();
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
@@ -508,7 +515,6 @@
         private Button bNewShablon;
         private TreeView treeView1;
         private SplitContainer splitContainer2;
-        private Label lName;
         private Button bChangeName;
         private Button bDeleteShablon;
         private Button bSave;
@@ -534,5 +540,6 @@
         private GroupBox groupBox3;
         private TextBox textbInputMask;
         private Button bStartSort;
+        private TextBox textName;
     }
 }
