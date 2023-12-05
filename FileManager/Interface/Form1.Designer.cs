@@ -33,7 +33,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             splitContainer1 = new SplitContainer();
             groupBox1 = new GroupBox();
-            bStartSort = new Button();
             bNewShablon = new Button();
             treeView1 = new TreeView();
             splitContainer2 = new SplitContainer();
@@ -101,7 +100,6 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(bStartSort);
             groupBox1.Controls.Add(bNewShablon);
             groupBox1.Controls.Add(treeView1);
             groupBox1.Dock = DockStyle.Fill;
@@ -113,27 +111,17 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Список шаблонов";
             // 
-            // bStartSort
-            // 
-            bStartSort.BackColor = Color.White;
-            bStartSort.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            bStartSort.Location = new Point(3, 657);
-            bStartSort.Name = "bStartSort";
-            bStartSort.Size = new Size(275, 54);
-            bStartSort.TabIndex = 3;
-            bStartSort.Text = "Начать сортировку";
-            bStartSort.UseVisualStyleBackColor = false;
-            // 
             // bNewShablon
             // 
             bNewShablon.BackColor = Color.WhiteSmoke;
             bNewShablon.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            bNewShablon.Location = new Point(3, 597);
+            bNewShablon.Location = new Point(6, 662);
             bNewShablon.Name = "bNewShablon";
             bNewShablon.Size = new Size(275, 54);
             bNewShablon.TabIndex = 2;
             bNewShablon.Text = "Новый шаблон";
             bNewShablon.UseVisualStyleBackColor = false;
+            bNewShablon.Click += bNewShablon_Click;
             // 
             // treeView1
             // 
@@ -146,7 +134,7 @@
             treeNode2.Name = "Пользовательские шаблоны";
             treeNode2.Text = "Пользовательские шаблоны";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2 });
-            treeView1.Size = new Size(281, 561);
+            treeView1.Size = new Size(281, 626);
             treeView1.TabIndex = 1;
             treeView1.AfterSelect += treeView1_AfterSelect;
             // 
@@ -201,7 +189,7 @@
             bChangeName.Name = "bChangeName";
             bChangeName.Size = new Size(267, 49);
             bChangeName.TabIndex = 24;
-            bChangeName.Text = "Изменить название";
+            bChangeName.Text = "Начать сортировку";
             bChangeName.UseVisualStyleBackColor = false;
             // 
             // bDeleteShablon
@@ -215,6 +203,7 @@
             bDeleteShablon.TabIndex = 23;
             bDeleteShablon.Text = "Удалить шаблон";
             bDeleteShablon.UseVisualStyleBackColor = false;
+            bDeleteShablon.Click += bDeleteShablon_Click;
             // 
             // bSave
             // 
@@ -485,6 +474,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Менеджер файлов";
+            FormClosing += Form1_FormClosing;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -539,7 +529,6 @@
         private Label label3;
         private GroupBox groupBox3;
         private TextBox textbInputMask;
-        private Button bStartSort;
         private TextBox textName;
     }
 }

@@ -20,13 +20,15 @@ namespace Interface
         private List<Shablon> shablons = new List<Shablon>();
         private IndexOfTreeView indexOfTreeView = new IndexOfTreeView(0, 0);
         private bool isChanged = false;
+        private bool isLoad = true;
         public Form1()
         {
             InitializeComponent();
 
-            SetMaxMinValues();
+            DisableElements();
             CheckShablons();
             FillTreeView();
+            isLoad = false;
 
             //List<Shablon> Shablons = new List<Shablon>(3)
             //{
@@ -53,6 +55,26 @@ namespace Interface
             checkbDateChange.Enabled = true;
             checkbDateCreate.Enabled = true;
             checkbSize.Enabled = true;
+            numSize1.Enabled = true;
+            numSize2.Enabled = true;
+            datetChange1.Enabled = true;
+            datetChange2.Enabled = true;
+            datetCreate1.Enabled = true;
+            datetCreate2.Enabled = true;
+            comboSize.Enabled = true;
+        }
+        private void DisableElements()
+        {
+            textName.Enabled = false;
+            textbInputMask.Enabled = false;
+            bChangeName.Enabled = false;
+            bDeleteShablon.Enabled = false;
+            checkbDateChange.Enabled = false;
+            checkbDateCreate.Enabled = false;
+            checkbSize.Enabled = false;
+            DisableSize();
+            DisableDateChange();
+            DisableDateCreate();
         }
         /// <summary>
         /// Проверяет наличие json-файлов с шаблонами и, если они есть, заполняет standartShablons и Shablons, в противном случае выводит предупреждение
@@ -114,6 +136,7 @@ namespace Interface
         private void FillShablon(Shablon shablon)
         {
             EnableElements();
+            SetMaxMinValues();
             Filter filter = shablon.Filter;
             textName.Text = shablon.Name;
             textbInputMask.Text = filter.Mask;
@@ -127,11 +150,17 @@ namespace Interface
         {
             string[] korenAndMean = e.Node.FullPath.Split('\\');
             if (korenAndMean.Length == 1)
+            {
+                indexOfTreeView.Index1 = korenAndMean[0] == STANDART_SHABLONS ? 0 : 1;
                 return;
+            }
 
             if (isChanged)
             {
-                Warning();
+                if (Warning("Сохранять изменения?"))
+                {
+                    bSave_Click(bSave, null);
+                }
             }
             indexOfTreeView.Index2 = e.Node.Index;
 
@@ -152,13 +181,14 @@ namespace Interface
             DisChangeProperties();
         }
 
-        private void Warning()
+        private bool Warning(string message)
         {
-            DialogResult dialogResult = MessageBox.Show("Сохранить изменения?", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show(message, "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                bSave_Click(bSave, null);
+                return true;
             }
+            return false;
         }
 
         /// <summary>
@@ -166,11 +196,15 @@ namespace Interface
         /// </summary>
         private void ChangeProperties()
         {
-            if (!isChanged)
+            if (isLoad)
+            {
+                tempShablon = new Shablon();
+            }
+            else if (!isChanged)
             {
                 isChanged = true;
                 bSave.Enabled = true;
-                tempShablon = new Shablon(standartShablons[indexOfTreeView.Index2]);
+                tempShablon = indexOfTreeView.Index1 == INDEX_OF_STANDART_SHABLONS ? new Shablon(standartShablons[indexOfTreeView.Index2]) : new Shablon(shablons[indexOfTreeView.Index2]);
             }
         }
         /// <summary>
@@ -254,6 +288,9 @@ namespace Interface
             Filter filter = tempShablon.Filter;
             filter.HasDateTimeIntervalCreate = !checkBox.Checked;
             tempShablon.Filter = filter;
+
+            datetCreate1.Value = DateTime.Now;
+            datetCreate2.Value = DateTime.Now;
         }
 
         private void datetCreate1_ValueChanged(object sender, EventArgs e)
@@ -296,6 +333,9 @@ namespace Interface
             Filter filter = tempShablon.Filter;
             filter.HasDateTimeIntervalChange = !checkBox.Checked;
             tempShablon.Filter = filter;
+
+            datetChange1.Value = DateTime.Now;
+            datetChange2.Value = DateTime.Now;
         }
 
         private void datetChange1_ValueChanged(object sender, EventArgs e)
@@ -343,6 +383,12 @@ namespace Interface
 
         private void bSave_Click(object sender, EventArgs e)
         {
+            if (!CheckTheSameName(tempShablon.Name.Trim(), indexOfTreeView.Index2, indexOfTreeView.Index1))
+            {
+                MessageBox.Show("Шаблон с таким названием уже существует!", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             treeView1.Nodes[indexOfTreeView.Index1].Nodes[indexOfTreeView.Index2].Text = tempShablon.Name;
 
             switch (indexOfTreeView.Index1)
@@ -357,6 +403,110 @@ namespace Interface
                     throw new Exception();
             }
             DisChangeProperties();
+        }
+
+        private void bDeleteShablon_Click(object sender, EventArgs e)
+        {
+            isLoad = true;
+            if (!Warning("Вы действительно хотите удалить шаблон?"))
+            {
+                return;
+            }
+            isChanged = false;
+
+            switch (indexOfTreeView.Index1)
+            {
+                case 0:
+                    standartShablons.RemoveAt(indexOfTreeView.Index2);
+                    break;
+                case 1:
+                    shablons.RemoveAt(indexOfTreeView.Index2);
+                    break;
+                default: throw new Exception();
+            }
+            treeView1.Nodes[indexOfTreeView.Index1].Nodes.RemoveAt(indexOfTreeView.Index2);
+            DisableElements();
+            treeView1.SelectedNode = null;
+            isChanged = false;
+            isLoad = false;
+        }
+
+        private void bNewShablon_Click(object sender, EventArgs e)
+        {
+            string name = ChooseName(-1);
+
+            switch (indexOfTreeView.Index1)
+            {
+                case 0:
+                    standartShablons.Add(new Shablon(name, new Filter("*.*", false, false, false)));
+                    treeView1.Nodes[INDEX_OF_STANDART_SHABLONS].Nodes.Add(name);
+                    break;
+                case 1:
+                    shablons.Add(new Shablon(name, new Filter("*.*", false, false, false)));
+                    treeView1.Nodes[INDEX_OF_SHABLONS].Nodes.Add(name);
+                    break;
+                default:
+                    throw new Exception();
+            }
+        }
+        private string ChooseName(int indexOfName, string name = "Новый шаблон")
+        {
+            if (!CheckTheSameName(name, -1, -1))
+            {
+                indexOfName++;
+                name = $"Новый шаблон ({indexOfName})";
+                name = ChooseName(indexOfName, name);
+            }
+
+            return name;
+        }
+
+        private bool CheckTheSameName(string name, int indexOfElement, int indexOfGroup)
+        {
+            for (int i = 0; i < standartShablons.Count; i++)
+            {
+                if (name == standartShablons[i].Name)
+                {
+                    if (i != indexOfElement || indexOfGroup != INDEX_OF_STANDART_SHABLONS)
+                    {
+                        return false;
+                    }
+                }
+            }
+            for (int i = 0; i < shablons.Count; i++)
+            {
+                if (name == shablons[i].Name)
+                {
+                    if (i != indexOfElement || indexOfGroup != INDEX_OF_SHABLONS)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+            string jsonStandartShablons = JsonSerializer.Serialize(new JsonStruct(standartShablons), options);
+            string jsonShablons = JsonSerializer.Serialize(new JsonStruct(shablons), options);
+
+            using (FileStream fileStream = new FileStream(pathStandartShablons, FileMode.Create))
+            {
+                using (StreamWriter writer = new StreamWriter(fileStream))
+                {
+                    writer.Write(jsonStandartShablons);
+                }
+            }
+            using (FileStream fileStream = new FileStream(pathShablons, FileMode.Create))
+            {
+                using (StreamWriter writer = new StreamWriter(fileStream))
+                {
+                    writer.Write(jsonShablons);
+                }
+            }
         }
     }
 }
