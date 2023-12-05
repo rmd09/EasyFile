@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace Core
 {
@@ -140,25 +139,17 @@ namespace Core
 
         public static bool SortBySize(this long sizeBits, SizeInterval sizeInterval)
         {
-            switch (sizeInterval.TypeСomparing)
+            var values = sizeInterval.GetBites();
+            long start = values.Item1;
+            long end = values.Item2;
+
+            if (sizeBits >= start && sizeBits <= end)
             {
-                case TypeСomparing.Greater:
-                    return sizeBits > sizeInterval.SizeBites;
-
-                case TypeСomparing.Less:
-                    return sizeBits < sizeInterval.SizeBites;
-
-                case TypeСomparing.Equal:
-                    return sizeBits == sizeInterval.SizeBites;
-
-                case TypeСomparing.CreaterOrEqual:
-                    return sizeBits >= sizeInterval.SizeBites;
-
-                case TypeСomparing.LessOrEqual:
-                    return sizeBits <= sizeInterval.SizeBites;
-
-                default:
-                    throw new ArgumentNullException("sizeInterval", "аргумент sizeInterval равен null");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
