@@ -497,5 +497,11 @@ namespace Interface
                 }
             }
         }
+
+        private void bChangeName_Click(object sender, EventArgs e)
+        {
+            new FormForPath().ShowDialog();
+            //Бла бла логика обработки введённых данных
+        }
     }
 }

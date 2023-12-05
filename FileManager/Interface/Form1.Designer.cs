@@ -191,6 +191,7 @@
             bChangeName.TabIndex = 24;
             bChangeName.Text = "Начать сортировку";
             bChangeName.UseVisualStyleBackColor = false;
+            bChangeName.Click += bChangeName_Click;
             // 
             // bDeleteShablon
             // 
