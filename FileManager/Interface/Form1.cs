@@ -29,17 +29,6 @@ namespace Interface
             CheckShablons();
             FillTreeView();
             isLoad = false;
-
-            //List<Shablon> Shablons = new List<Shablon>(3)
-            //{
-            //    new Shablon("Текстовый документ", new Filter("*.txt", true, true, true, new DateTimeInterval(new DateTime(2023, 11, 1), DateTime.Now), new DateTimeInterval(new DateTime(2023, 11, 6), DateTime.Now), new SizeInterval(2000, 14000))),
-            //    new Shablon("Текстовый документ Word", new Filter("*.doc*", false, false, false)),
-            //    new Shablon("Документ PowerPoint", new Filter("*.ppt*", false, false, false))
-            //};
-            //JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
-            //jsonSerializerOptions.WriteIndented = true;
-            //string json = JsonSerializer.Serialize(new JsonStruct(Shablons), jsonSerializerOptions);
-            //File.WriteAllText(pathStandartShablons, json);
         }
 
         #region Этап загрузки приложения
