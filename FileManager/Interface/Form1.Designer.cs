@@ -37,7 +37,7 @@
             treeView1 = new TreeView();
             splitContainer2 = new SplitContainer();
             textName = new TextBox();
-            bChangeName = new Button();
+            bStartSort = new Button();
             bDeleteShablon = new Button();
             bSave = new Button();
             groupBox5 = new GroupBox();
@@ -153,7 +153,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            splitContainer2.Panel2.Controls.Add(bChangeName);
+            splitContainer2.Panel2.Controls.Add(bStartSort);
             splitContainer2.Panel2.Controls.Add(bDeleteShablon);
             splitContainer2.Panel2.Controls.Add(bSave);
             splitContainer2.Panel2.Controls.Add(groupBox5);
@@ -180,17 +180,18 @@
             textName.TextAlign = HorizontalAlignment.Center;
             textName.TextChanged += textName_TextChanged;
             // 
-            // bChangeName
+            // bStartSort
             // 
-            bChangeName.BackColor = Color.WhiteSmoke;
-            bChangeName.Enabled = false;
-            bChangeName.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            bChangeName.Location = new Point(332, 574);
-            bChangeName.Name = "bChangeName";
-            bChangeName.Size = new Size(267, 49);
-            bChangeName.TabIndex = 24;
-            bChangeName.Text = "Начать сортировку";
-            bChangeName.UseVisualStyleBackColor = false;
+            bStartSort.BackColor = Color.WhiteSmoke;
+            bStartSort.Enabled = false;
+            bStartSort.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            bStartSort.Location = new Point(332, 574);
+            bStartSort.Name = "bStartSort";
+            bStartSort.Size = new Size(267, 49);
+            bStartSort.TabIndex = 24;
+            bStartSort.Text = "Начать сортировку";
+            bStartSort.UseVisualStyleBackColor = false;
+            bStartSort.Click += bStartSort_Click;
             // 
             // bDeleteShablon
             // 
@@ -505,7 +506,7 @@
         private Button bNewShablon;
         private TreeView treeView1;
         private SplitContainer splitContainer2;
-        private Button bChangeName;
+        private Button bStartSort;
         private Button bDeleteShablon;
         private Button bSave;
         private GroupBox groupBox5;

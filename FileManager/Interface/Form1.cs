@@ -1,6 +1,5 @@
 using Core;
 using CoreForWindows;
-using System.ComponentModel;
 using System.Text.Json;
 
 namespace Interface
@@ -29,17 +28,6 @@ namespace Interface
             CheckShablons();
             FillTreeView();
             isLoad = false;
-
-            //List<Shablon> Shablons = new List<Shablon>(3)
-            //{
-            //    new Shablon("Текстовый документ", new Filter("*.txt", true, true, true, new DateTimeInterval(new DateTime(2023, 11, 1), DateTime.Now), new DateTimeInterval(new DateTime(2023, 11, 6), DateTime.Now), new SizeInterval(2000, 14000))),
-            //    new Shablon("Текстовый документ Word", new Filter("*.doc*", false, false, false)),
-            //    new Shablon("Документ PowerPoint", new Filter("*.ppt*", false, false, false))
-            //};
-            //JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
-            //jsonSerializerOptions.WriteIndented = true;
-            //string json = JsonSerializer.Serialize(new JsonStruct(Shablons), jsonSerializerOptions);
-            //File.WriteAllText(pathStandartShablons, json);
         }
 
         #region Этап загрузки приложения
@@ -50,7 +38,7 @@ namespace Interface
         {
             textName.Enabled = true;
             textbInputMask.Enabled = true;
-            bChangeName.Enabled = true;
+            bStartSort.Enabled = true;
             bDeleteShablon.Enabled = true;
             checkbDateChange.Enabled = true;
             checkbDateCreate.Enabled = true;
@@ -67,7 +55,7 @@ namespace Interface
         {
             textName.Enabled = false;
             textbInputMask.Enabled = false;
-            bChangeName.Enabled = false;
+            bStartSort.Enabled = false;
             bDeleteShablon.Enabled = false;
             checkbDateChange.Enabled = false;
             checkbDateCreate.Enabled = false;
@@ -388,6 +376,11 @@ namespace Interface
                 MessageBox.Show("Шаблон с таким названием уже существует!", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            else
+            {
+                tempShablon.Name = tempShablon.Name.Replace('\n', ' ');
+                textName.Text = tempShablon.Name;
+            }
 
             treeView1.Nodes[indexOfTreeView.Index1].Nodes[indexOfTreeView.Index2].Text = tempShablon.Name;
 
@@ -506,6 +499,22 @@ namespace Interface
                 {
                     writer.Write(jsonShablons);
                 }
+            }
+        }
+
+        private void bStartSort_Click(object sender, EventArgs e)
+        {
+            if (isChanged)
+            {
+                bSave_Click(bSave, null);
+            }
+            PathHelpClass pathHelpStruct = new PathHelpClass();
+            new FormForPath(pathHelpStruct).ShowDialog();
+            if (pathHelpStruct.isOK)
+            {
+                FileSorter fileSorter = new FileSorter(pathHelpStruct.PathMain, pathHelpStruct.PathFinal, indexOfTreeView.Index1 == INDEX_OF_STANDART_SHABLONS ? standartShablons[indexOfTreeView.Index2].Filter : shablons[indexOfTreeView.Index2].Filter, pathHelpStruct.CutSortedFiles, pathHelpStruct.SortAllSubdirictories);
+                fileSorter.Sort();
+                MessageBox.Show("Сортировка прошла успешно", "Оповещение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
