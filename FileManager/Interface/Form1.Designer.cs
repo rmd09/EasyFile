@@ -473,6 +473,7 @@
             Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Менеджер файлов";
             FormClosing += Form1_FormClosing;
