@@ -1,0 +1,70 @@
+{
+  "Shablons": [
+    {
+      "Name": "\u0422\u0435\u043A\u0441\u0442\u043E\u0432\u044B\u0439 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442",
+      "Filter": {
+        "Mask": "*.txt",
+        "DateTimeIntervalChange": {
+          "Start": "2023-11-01T00:00:00",
+          "End": "2023-12-01T18:51:54.9685817+03:00"
+        },
+        "HasDateTimeIntervalChange": true,
+        "DateTimeIntervalCreate": {
+          "Start": "2023-11-01T00:00:00",
+          "End": "2023-12-01T18:51:54.9716593+03:00"
+        },
+        "HasDateTimeIntervalCreate": true,
+        "SizeBitesInterval": {
+          "Start": 2000,
+          "End": 14000,
+          "TypeSize": 3
+        },
+        "HasSizeBitsInterval": true
+      }
+    },
+    {
+      "Name": "\u0422\u0435\u043A\u0441\u0442\u043E\u0432\u044B\u0439 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442 Word",
+      "Filter": {
+        "Mask": "*.doc*",
+        "DateTimeIntervalChange": {
+          "Start": "0001-01-01T00:00:00",
+          "End": "0001-01-01T00:00:00"
+        },
+        "HasDateTimeIntervalChange": false,
+        "DateTimeIntervalCreate": {
+          "Start": "0001-01-01T00:00:00",
+          "End": "0001-01-01T00:00:00"
+        },
+        "HasDateTimeIntervalCreate": false,
+        "SizeBitesInterval": {
+          "Start": 0,
+          "End": 0,
+          "TypeSize": 0
+        },
+        "HasSizeBitsInterval": false
+      }
+    },
+    {
+      "Name": "\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442 PowerPoint",
+      "Filter": {
+        "Mask": "*.ppt*",
+        "DateTimeIntervalChange": {
+          "Start": "0001-01-01T00:00:00",
+          "End": "0001-01-01T00:00:00"
+        },
+        "HasDateTimeIntervalChange": false,
+        "DateTimeIntervalCreate": {
+          "Start": "0001-01-01T00:00:00",
+          "End": "0001-01-01T00:00:00"
+        },
+        "HasDateTimeIntervalCreate": false,
+        "SizeBitesInterval": {
+          "Start": 0,
+          "End": 0,
+          "TypeSize": 0
+        },
+        "HasSizeBitsInterval": false
+      }
+    }
+  ]
+}
