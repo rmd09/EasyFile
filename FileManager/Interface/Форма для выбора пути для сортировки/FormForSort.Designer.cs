@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormForPath));
-            splitContainer1 = new SplitContainer();
             button2 = new Button();
             textBox2 = new TextBox();
             label2 = new Label();
@@ -37,64 +36,39 @@
             textBox1 = new TextBox();
             label1 = new Label();
             button3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.Panel2.SuspendLayout();
-            splitContainer1.SuspendLayout();
+            checkCut = new CheckBox();
+            checkSubdirictories = new CheckBox();
             SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            splitContainer1.BorderStyle = BorderStyle.Fixed3D;
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.IsSplitterFixed = true;
-            splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Name = "splitContainer1";
-            splitContainer1.Orientation = Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.Controls.Add(button2);
-            splitContainer1.Panel1.Controls.Add(textBox2);
-            splitContainer1.Panel1.Controls.Add(label2);
-            splitContainer1.Panel1.Controls.Add(button1);
-            splitContainer1.Panel1.Controls.Add(textBox1);
-            splitContainer1.Panel1.Controls.Add(label1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.Controls.Add(button3);
-            splitContainer1.Size = new Size(616, 304);
-            splitContainer1.SplitterDistance = 221;
-            splitContainer1.TabIndex = 7;
             // 
             // button2
             // 
             button2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             button2.ImageAlign = ContentAlignment.TopCenter;
-            button2.Location = new Point(499, 172);
+            button2.Location = new Point(499, 150);
             button2.Name = "button2";
             button2.Size = new Size(100, 34);
-            button2.TabIndex = 11;
+            button2.TabIndex = 18;
             button2.Text = "Обзор";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // textBox2
             // 
             textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.Location = new Point(17, 172);
+            textBox2.Location = new Point(17, 150);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(456, 34);
-            textBox2.TabIndex = 10;
+            textBox2.TabIndex = 17;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(17, 116);
+            label2.Location = new Point(17, 106);
             label2.Name = "label2";
             label2.Size = new Size(335, 41);
-            label2.TabIndex = 9;
+            label2.TabIndex = 16;
             label2.Text = "Путь к конечной папке";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -102,48 +76,85 @@
             // 
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ImageAlign = ContentAlignment.TopCenter;
-            button1.Location = new Point(499, 70);
+            button1.Location = new Point(499, 54);
             button1.Name = "button1";
             button1.Size = new Size(100, 34);
-            button1.TabIndex = 8;
+            button1.TabIndex = 15;
             button1.Text = "Обзор";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(17, 70);
+            textBox1.Location = new Point(17, 53);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(456, 34);
-            textBox1.TabIndex = 7;
+            textBox1.TabIndex = 13;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(17, 14);
+            label1.Location = new Point(17, 9);
             label1.Name = "label1";
             label1.Size = new Size(508, 41);
-            label1.TabIndex = 6;
+            label1.TabIndex = 12;
             label1.Text = "Путь к корневой (начальной) папке";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // button3
             // 
             button3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(192, 8);
+            button3.Location = new Point(380, 219);
             button3.Name = "button3";
             button3.Size = new Size(219, 62);
-            button3.TabIndex = 7;
+            button3.TabIndex = 14;
             button3.Text = "Готово";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // checkCut
+            // 
+            checkCut.AutoSize = true;
+            checkCut.Checked = true;
+            checkCut.CheckState = CheckState.Checked;
+            checkCut.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            checkCut.Location = new Point(17, 205);
+            checkCut.Name = "checkCut";
+            checkCut.Size = new Size(326, 27);
+            checkCut.TabIndex = 19;
+            checkCut.Text = "Премещать отсортированные файлы";
+            checkCut.UseVisualStyleBackColor = true;
+            // 
+            // checkSubdirictories
+            // 
+            checkSubdirictories.AutoSize = true;
+            checkSubdirictories.Checked = true;
+            checkSubdirictories.CheckState = CheckState.Checked;
+            checkSubdirictories.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            checkSubdirictories.Location = new Point(17, 254);
+            checkSubdirictories.Name = "checkSubdirictories";
+            checkSubdirictories.Size = new Size(342, 27);
+            checkSubdirictories.TabIndex = 20;
+            checkSubdirictories.Text = "Сортировать файлы во всех подпапках";
+            checkSubdirictories.UseVisualStyleBackColor = true;
             // 
             // FormForPath
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(616, 304);
-            Controls.Add(splitContainer1);
+            Controls.Add(checkSubdirictories);
+            Controls.Add(checkCut);
+            Controls.Add(button2);
+            Controls.Add(textBox2);
+            Controls.Add(label2);
+            Controls.Add(button1);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
+            Controls.Add(button3);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -151,23 +162,20 @@
             Name = "FormForPath";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Выберите путь...";
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel1.PerformLayout();
-            splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private SplitContainer splitContainer1;
-        private Button button3;
         private Button button2;
         private TextBox textBox2;
         private Label label2;
         private Button button1;
         private TextBox textBox1;
         private Label label1;
+        private Button button3;
+        private CheckBox checkCut;
+        private CheckBox checkSubdirictories;
     }
 }
