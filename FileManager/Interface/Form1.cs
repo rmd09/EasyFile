@@ -481,6 +481,13 @@ namespace Interface
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (isChanged)
+            {
+                if (Warning("Сохранить изменить?"))
+                {
+                    bSave_Click(null, null);
+                }
+            }
             JsonSerializerOptions options = new JsonSerializerOptions();
             options.WriteIndented = true;
             string jsonStandartShablons = JsonSerializer.Serialize(new JsonStruct(standartShablons), options);
