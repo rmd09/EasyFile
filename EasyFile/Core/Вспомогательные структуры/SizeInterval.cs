@@ -7,8 +7,8 @@ namespace Core
     /// </summary>
     public struct SizeInterval
     {
-        public const int K_TO_MB = 1024 * 1024 * 1024;
-        public const int K_TO_GB = 1024 * 1024;
+        public const int K_TO_GB = 1024 * 1024 * 1024;
+        public const int K_TO_MB = 1024 * 1024;
         public const int K_TO_KB = 1024;
 
         public SizeInterval(long start, long end, TypeSize typeSize = TypeSize.b)

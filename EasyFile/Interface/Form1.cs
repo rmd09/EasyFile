@@ -216,6 +216,7 @@ namespace Interface
             else
             {
                 EnableSize();
+                comboSize_SelectedIndexChanged(comboSize, null);
             }
 
             Filter filter = tempShablon.Filter;
