@@ -84,6 +84,7 @@ namespace Interface
             else
             {
                 MessageBox.Show("Файл со стандартными шаблонами был удалён! Дальнейшая работа с файлами будет без этих шаблонов", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Directory.CreateDirectory(".\\Шаблоны");
                 File.Create(pathStandartShablons).Close();
             }
 
@@ -101,6 +102,7 @@ namespace Interface
             else
             {
                 MessageBox.Show("Файл с пользовательскими шаблонами был удалён! Дальнейшая работа с файлами будет без этих шаблонов", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Directory.CreateDirectory(".\\Шаблоны");
                 File.Create(pathShablons).Close();
             }
         }
